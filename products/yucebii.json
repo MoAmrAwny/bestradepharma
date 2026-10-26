@@ -1,0 +1,878 @@
+{
+  "data": {
+    "product": {
+      "name": {
+        "ar": "يوسيبي",
+        "en": "Yucebii"
+      },
+      "straplineClaimId": "ucii-vs-glucosamine",
+      "capsulesPerPack": 30,
+      "dose": {
+        "ar": "كبسولة واحدة يوميًا، مع الأكل أو بدونه. للبالغين فقط.",
+        "en": "One capsule daily, with or without food. Adults only."
+      },
+      "registration": {
+        "authority": {
+          "ar": "الهيئة القومية لسلامة الغذاء",
+          "en": "National Food Safety Authority"
+        },
+        "number": "5332/2023"
+      },
+      "manufacturedBy": {
+        "ar": "فارما زاد، المنطقة الصناعية 250 فدان شباب، مدينة بدر، القاهرة",
+        "en": "Pharma Zad, Industrial area 250 acres youth, Badr City, Cairo"
+      },
+      "manufacturedFor": {
+        "ar": "شركة بيستريد فارما، العبور، القاهرة",
+        "en": "Bestrade Pharma Company, El Obour, Cairo"
+      },
+      "countryOfManufacture": {
+        "ar": "صنع في مصر",
+        "en": "Made in Egypt"
+      },
+      "telephone": "01116016972",
+      "website": "www.bestradepharma.com",
+      "storage": {
+        "ar": "يُحفظ في عبوته الأصلية في مكان جاف وبارد، على درجة حرارة لا تتجاوز 30 درجة مئوية، بعيدًا عن الحرارة وأشعة الشمس المباشرة.",
+        "en": "Keep in the original package in a dry, cool place at not more than 30 degrees Celsius, away from direct heat and sunlight."
+      },
+      "disclaimer": {
+        "ar": "هذا المنتج غير مخصص لتشخيص أي مرض أو علاجه أو الوقاية منه، ولا يُعد بديلًا عن نظام غذائي متوازن أو أسلوب حياة صحي.",
+        "en": "This product is not intended to diagnose, treat, cure or prevent any disease and is not considered as a replacement for a balanced nutritional diet or for a healthy life style."
+      }
+    },
+    "paths": [
+      {
+        "id": "pain",
+        "door": {
+          "ar": "ركبتي تؤلمني الآن",
+          "en": "My knees hurt now"
+        },
+        "register": "calm-clinical",
+        "sectionOrder": [
+          "evidence",
+          "how-to-take",
+          "safety",
+          "ingredients",
+          "what-it-is",
+          "contact"
+        ]
+      },
+      {
+        "id": "prevention",
+        "door": {
+          "ar": "أريد حماية مفاصلي",
+          "en": "I want to protect my joints"
+        },
+        "register": "exploratory",
+        "sectionOrder": [
+          "ingredients",
+          "evidence",
+          "how-to-take",
+          "safety",
+          "what-it-is",
+          "contact"
+        ]
+      }
+    ],
+    "ingredients": [
+      {
+        "id": "ucii",
+        "name": {
+          "ar": "كولاجين UC-II غير المتغير",
+          "en": "UC-II undenatured type II collagen"
+        },
+        "amount": {
+          "value": 40,
+          "unit": "mg",
+          "provenance": {
+            "kind": "carton"
+          }
+        },
+        "standardisation": {
+          "declared": true,
+          "marker": {
+            "ar": "كولاجين من النوع الثاني غير متغير الطبيعة",
+            "en": "Undenatured type II collagen"
+          },
+          "minimumPercent": {
+            "value": 3,
+            "unit": "percent",
+            "provenance": {
+              "kind": "supplier",
+              "supplier": "Lonza"
+            }
+          }
+        },
+        "source": {
+          "ar": "يُستخلص من غضروف عظم صدر الدجاج.",
+          "en": "Made from chicken sternum cartilage."
+        },
+        "allergen": {
+          "ar": "يحتوي على مكوّن من الدجاج. لا تتناوله إذا كان لديك حساسية من الدجاج أو الدواجن، وهو غير مناسب للنباتيين.",
+          "en": "Contains a chicken-derived ingredient. Do not take it if you are allergic to chicken or poultry. It is not suitable for vegetarians."
+        },
+        "comparison": {
+          "trialDose": {
+            "ar": "استخدمت التجارب السريرية 40 مجم يوميًا، وهي نفس الجرعة الموجودة في هذه الكبسولة.",
+            "en": "The clinical trials used 40 mg daily, which is exactly the amount in this capsule."
+          },
+          "verdict": "matches",
+          "citationIds": [
+            "crowley-2009",
+            "lugo-2016"
+          ]
+        },
+        "story": {
+          "headline": {
+            "ar": "1.2 مجم فقط، وهذا هو بيت القصيد",
+            "en": "Only 1.2 mg, and that is the whole point"
+          },
+          "body": {
+            "ar": "من بين الأربعين مليجرامًا، الجزء الفعّال هو 1.2 مجم فقط. الرقم صغير لأن هذا الكولاجين لا يُستخدم كمادة بناء للغضروف. إنه يعمل كإشارة يتلقّاها الجهاز المناعي. الجرعة الصغيرة هي الطريقة الصحيحة لإعطاء الإشارة، والجرعة الكبيرة لن تكون أفضل.",
+            "en": "Out of the 40 mg, the active part is just 1.2 mg. The number is small because this collagen is not a building material for cartilage. It works as a signal that the immune system picks up. A small dose is the right way to send the signal, and a larger one would not work better."
+          }
+        },
+        "mechanism": {
+          "ar": "يمر الكولاجين إلى الأمعاء الدقيقة حيث يلتقي بالجهاز المناعي، فيتعلّم الجسم أن يتوقف عن مهاجمة غضروف مفاصله. هذه العملية تُسمى التحمّل الفموي، وهي تحتاج إلى تناول منتظم كل يوم حتى تستمر.",
+          "en": "The collagen reaches the small intestine, where it meets the immune system and teaches the body to stop attacking its own joint cartilage. This process is called oral tolerance, and it needs continuous daily intake to be maintained."
+        },
+        "readerRank": 1,
+        "readerRankReason": "The reason the product exists. Trials at exactly this dose, and the strongest fact on the page."
+      },
+      {
+        "id": "turmeric",
+        "name": {
+          "ar": "مستخلص الكركم (الجذمور)",
+          "en": "Turmeric extract (rhizome)"
+        },
+        "amount": {
+          "value": 200,
+          "unit": "mg",
+          "provenance": {
+            "kind": "carton"
+          }
+        },
+        "standardisation": {
+          "declared": false,
+          "note": {
+            "ar": "لا تذكر العبوة نسبة الكركمينويدات، وهي المادة الفعّالة في الكركم. بدون هذه النسبة لا يمكن مقارنة هذه الجرعة بأي تجربة سريرية.",
+            "en": "The pack does not state the curcuminoid percentage, which is the active part of turmeric. Without that figure this amount cannot be compared to any clinical trial."
+          }
+        },
+        "source": {
+          "ar": "جذمور نبات الكركم.",
+          "en": "The rhizome of the turmeric plant."
+        },
+        "allergen": null,
+        "comparison": {
+          "trialDose": {
+            "ar": "استخدمت التجارب في خشونة الركبة ما بين 160 و2000 مجم من الكركمينويدات يوميًا، وأغلبها بين 1000 و1500 مجم.",
+            "en": "Knee osteoarthritis trials used between 160 and 2000 mg of curcuminoids daily, most of them between 1000 and 1500 mg."
+          },
+          "verdict": "not-comparable",
+          "citationIds": [
+            "curcumin-meta-2021"
+          ]
+        },
+        "story": {
+          "headline": {
+            "ar": "اللون الأصفر نفسه هو الدواء",
+            "en": "The yellow colour is the medicine"
+          },
+          "body": {
+            "ar": "الصبغة الصفراء التي تلوّن أصابعك عند تقطيع الكركم هي نفسها المادة الفعّالة، الكركمينويدات. المشكلة أن الجسم يمتصها بصعوبة شديدة، ولهذا يوضع الفلفل الأسود معها في هذه الكبسولة.",
+            "en": "The yellow pigment that stains your fingers when you cut turmeric is the studied substance itself, the curcuminoids. The difficulty is that the body absorbs it very poorly, which is why black pepper sits beside it in this capsule."
+          }
+        },
+        "mechanism": {
+          "ar": "تقلّل الكركمينويدات إنتاج بعض الوسائط الالتهابية داخل المفصل.",
+          "en": "Curcuminoids reduce the production of some inflammatory mediators inside the joint."
+        },
+        "readerRank": 2,
+        "readerRankReason": "The largest active amount at 200 mg, the most recognisable material, and the staining fact."
+      },
+      {
+        "id": "boswellia",
+        "name": {
+          "ar": "مستخلص اللبان الدكر (بوسويليا سيراتا)",
+          "en": "Boswellia serrata extract"
+        },
+        "amount": {
+          "value": 100,
+          "unit": "mg",
+          "provenance": {
+            "kind": "carton"
+          }
+        },
+        "standardisation": {
+          "declared": false,
+          "note": {
+            "ar": "لا تذكر العبوة نسبة حمض AKBA، وهو المكوّن الأكثر فاعلية في اللبان. التجارب التي أثبتت نتيجة استخدمت مستخلصًا محدّد النسبة عند 30 بالمئة على الأقل، ولا يمكن نسب نتائجها إلى مستخلص غير محدّد.",
+            "en": "The pack does not state the AKBA figure, which is the most active component of the resin. The trials that showed a result used an extract standardised to at least 30 percent, and their findings cannot be claimed for an unstandardised extract."
+          }
+        },
+        "source": {
+          "ar": "الصمغ الراتنجي لشجرة البوسويليا سيراتا.",
+          "en": "The resin of the Boswellia serrata tree."
+        },
+        "allergen": null,
+        "comparison": {
+          "trialDose": {
+            "ar": "استخدمت التجارب 100 أو 250 مجم من مستخلص محدّد النسبة عند 30 بالمئة، وتجربة أخرى استخدمت 300 أو 600 مجم يوميًا.",
+            "en": "Trials used 100 or 250 mg of an extract standardised to 30 percent, and another used 300 or 600 mg daily."
+          },
+          "verdict": "not-comparable",
+          "citationIds": [
+            "sengupta-2008",
+            "boswellin-2024"
+          ]
+        },
+        "story": {
+          "headline": {
+            "ar": "هذا هو اللبان نفسه",
+            "en": "This is frankincense"
+          },
+          "body": {
+            "ar": "راتنج هذه الشجرة هو اللبان الذي انتقل على طرق البخور العربية آلاف السنين. يُجرح لحاء الشجرة جرحًا سطحيًا فتبكي الشجرة قطرات تجف في الهواء وتتحول إلى حبيبات صلبة. الحبيبات نفسها التي بُخّرت في المعابد هي التي يُستخلص منها ما في هذه الكبسولة.",
+            "en": "The resin of this tree is frankincense, carried along the Arabian incense routes for thousands of years. The bark is cut shallowly and the tree weeps droplets that dry in the air into hard grains. The same grains that were burned in temples are the source of what sits in this capsule."
+          }
+        },
+        "mechanism": {
+          "ar": "يثبّط حمض AKBA إنزيم 5-ليبوأوكسيجيناز، وهو إنزيم أساسي في سلسلة الالتهاب.",
+          "en": "AKBA inhibits 5-lipoxygenase, a key enzyme in the inflammatory cascade."
+        },
+        "readerRank": 3,
+        "readerRankReason": "Frankincense. A real amount at 100 mg and the story that needs no explanation in Egypt."
+      },
+      {
+        "id": "resveratrol",
+        "name": {
+          "ar": "ريسفيراترول",
+          "en": "Resveratrol"
+        },
+        "amount": {
+          "value": 100,
+          "unit": "mg",
+          "provenance": {
+            "kind": "carton"
+          }
+        },
+        "standardisation": {
+          "declared": false,
+          "note": {
+            "ar": "لا تذكر العبوة مصدر الريسفيراترول ولا نسبته. يذكر موقع الشركة أنه من جذر عشبة الرِّكل اليابانية.",
+            "en": "The pack states neither the source nor the percentage. The company website says it comes from Japanese knotweed root."
+          }
+        },
+        "source": {
+          "ar": "جذر عشبة الرِّكل اليابانية، حسب موقع الشركة.",
+          "en": "Japanese knotweed root, according to the company website."
+        },
+        "allergen": null,
+        "comparison": {
+          "trialDose": {
+            "ar": "استخدمت تجارب خشونة الركبة 500 مجم يوميًا كعلاج مساعد.",
+            "en": "Knee osteoarthritis trials used 500 mg daily as an adjunct."
+          },
+          "verdict": "below-trial-dose",
+          "citationIds": []
+        },
+        "story": {
+          "headline": {
+            "ar": "المادة التي في قشر العنب الأحمر",
+            "en": "The substance in red grape skin"
+          },
+          "body": {
+            "ar": "الريسفيراترول مادة تصنعها النباتات للدفاع عن نفسها عند الإصابة أو العدوى. اشتهر لوجوده في قشر العنب الأحمر، لكن المصدر التجاري له عادةً جذر نبات آخر أغنى به بكثير.",
+            "en": "Resveratrol is a substance plants make to defend themselves when injured or infected. It became known for being in red grape skin, though the commercial source is usually the root of a different plant that contains far more of it."
+          }
+        },
+        "mechanism": {
+          "ar": "مضاد أكسدة يقلّل بعض إشارات الالتهاب.",
+          "en": "An antioxidant that reduces some inflammatory signalling."
+        },
+        "readerRank": 5,
+        "readerRankReason": "100 mg, below the amount any knee trial used."
+      },
+      {
+        "id": "hyaluronic-acid",
+        "name": {
+          "ar": "حمض الهيالورونيك",
+          "en": "Hyaluronic acid"
+        },
+        "amount": {
+          "value": 5,
+          "unit": "mg",
+          "provenance": {
+            "kind": "carton"
+          }
+        },
+        "standardisation": {
+          "declared": false,
+          "note": {
+            "ar": "لا تذكر العبوة درجة النقاء. يذكر موقع الشركة 89 بالمئة على الأقل.",
+            "en": "The pack does not state the purity. The company website says at least 89 percent."
+          }
+        },
+        "source": {
+          "ar": "حمض الهيالورونيك المُصنَّع بالتخمير.",
+          "en": "Hyaluronic acid produced by fermentation."
+        },
+        "allergen": null,
+        "comparison": {
+          "trialDose": {
+            "ar": "استخدمت تجارب الهيالورونيك عن طريق الفم ما بين 80 و240 مجم يوميًا، أي ما بين 16 و48 ضعف الكمية الموجودة هنا.",
+            "en": "Oral hyaluronic acid trials used between 80 and 240 mg daily, which is 16 to 48 times the amount here."
+          },
+          "verdict": "below-trial-dose",
+          "citationIds": [
+            "oral-ha-2012"
+          ]
+        },
+        "story": {
+          "headline": {
+            "ar": "السائل الذي يملأ المفصل",
+            "en": "The fluid that fills the joint"
+          },
+          "body": {
+            "ar": "حمض الهيالورونيك هو ما يجعل السائل داخل المفصل لزجًا وزلقًا في آن واحد. الكمية الموجودة هنا صغيرة جدًا مقارنة بالتجارب، ونذكر ذلك بوضوح بدلًا من تركه.",
+            "en": "Hyaluronic acid is what makes the fluid inside a joint both thick and slippery at once. The amount here is very small compared with the trials, and we say so plainly rather than leave it out."
+          }
+        },
+        "mechanism": {
+          "ar": "يدخل في تركيب السائل الزليلي والغضروف.",
+          "en": "It is part of the structure of synovial fluid and cartilage."
+        },
+        "readerRank": 6,
+        "readerRankReason": "5 mg, between 16 and 48 times below the amount the oral trials used."
+      },
+      {
+        "id": "black-pepper",
+        "name": {
+          "ar": "مستخلص الفلفل الأسود (الثمرة)",
+          "en": "Black pepper extract (fruit)"
+        },
+        "amount": {
+          "value": 5,
+          "unit": "mg",
+          "provenance": {
+            "kind": "carton"
+          }
+        },
+        "standardisation": {
+          "declared": false,
+          "note": {
+            "ar": "لا تذكر العبوة نسبة البيبيرين. يذكر موقع الشركة 95 بالمئة على الأقل، أي نحو 4.75 مجم.",
+            "en": "The pack does not state the piperine percentage. The company website says at least 95 percent, which would be about 4.75 mg."
+          }
+        },
+        "source": {
+          "ar": "ثمرة الفلفل الأسود.",
+          "en": "The fruit of the black pepper plant."
+        },
+        "allergen": null,
+        "comparison": {
+          "trialDose": {
+            "ar": "استُخدم 20 مجم من البيبيرين في الدراسات التي رفعت امتصاص الكركمين، أي نحو أربعة أضعاف ما هنا.",
+            "en": "Studies that raised curcumin absorption used 20 mg of piperine, about four times the amount here."
+          },
+          "verdict": "below-trial-dose",
+          "citationIds": [
+            "piperine-cyp3a4"
+          ]
+        },
+        "story": {
+          "headline": {
+            "ar": "ليس للطعم",
+            "en": "Not for flavour"
+          },
+          "body": {
+            "ar": "الفلفل الأسود هنا ليس مكوّنًا فعّالًا في حد ذاته. وظيفته أن يجعل الكركم يُمتص. البيبيرين يبطّئ تكسير الكركمين في الأمعاء والكبد فيبقى في الدم فترة أطول. وهذه نفسها السبب الذي يجعله يستحق تحذيرًا، لأنه يفعل الشيء نفسه مع أدوية أخرى.",
+            "en": "The black pepper here is not an active ingredient in itself. Its job is to make the turmeric absorb. Piperine slows the breakdown of curcumin in the gut and liver so it stays in the blood longer. That same property is why it deserves a warning, because it does the same thing to other medicines."
+          }
+        },
+        "mechanism": {
+          "ar": "يثبّط البيبيرين إنزيم CYP3A4 وناقل البروتين السكري P، وهما المسؤولان عن امتصاص وتصفية كثير من الأدوية التي تؤخذ عن طريق الفم.",
+          "en": "Piperine inhibits the enzyme CYP3A4 and the transporter P-glycoprotein, which together govern the absorption and clearance of many oral medicines."
+        },
+        "readerRank": 4,
+        "readerRankReason": "Only 5 mg, but it carries a real interaction warning and it explains why turmeric is here."
+      }
+    ],
+    "nonActiveIngredients": [
+      {
+        "name": {
+          "ar": "جيلاتين",
+          "en": "Gelatin"
+        },
+        "eNumber": null,
+        "purpose": {
+          "ar": "غلاف الكبسولة.",
+          "en": "The capsule shell."
+        },
+        "restrictions": [
+          {
+            "ar": "لا تذكر العبوة مصدر الجيلاتين الحيواني، وهو ما يهمّ من يسأل عن الحلال ومن يتجنّب مصادر بعينها.",
+            "en": "The pack does not state the animal source of the gelatin, which matters for anyone asking about halal status or avoiding particular sources."
+          }
+        ]
+      },
+      {
+        "name": {
+          "ar": "فوسفات الكالسيوم ثنائي القاعدة",
+          "en": "Calcium phosphate dibasic"
+        },
+        "eNumber": "E341",
+        "purpose": {
+          "ar": "مادة مالئة.",
+          "en": "A filler."
+        },
+        "restrictions": []
+      },
+      {
+        "name": {
+          "ar": "ستيارات المغنيسيوم",
+          "en": "Magnesium stearate"
+        },
+        "eNumber": "E470b",
+        "purpose": {
+          "ar": "يمنع التصاق المسحوق أثناء التصنيع.",
+          "en": "Stops the powder sticking during manufacture."
+        },
+        "restrictions": []
+      },
+      {
+        "name": {
+          "ar": "ثاني أكسيد السيليكون",
+          "en": "Silicon dioxide"
+        },
+        "eNumber": "E551",
+        "purpose": {
+          "ar": "يمنع التكتّل.",
+          "en": "Stops caking."
+        },
+        "restrictions": []
+      },
+      {
+        "name": {
+          "ar": "ثاني أكسيد التيتانيوم",
+          "en": "Titanium dioxide"
+        },
+        "eNumber": "E171",
+        "purpose": {
+          "ar": "يجعل غلاف الكبسولة معتمًا. لا وظيفة له غير المظهر.",
+          "en": "Makes the capsule shell opaque. It has no function other than appearance."
+        },
+        "restrictions": [
+          {
+            "ar": "ممنوع كمضاف غذائي في الاتحاد الأوروبي منذ 2022، بعد أن خلصت الهيئة الأوروبية لسلامة الغذاء إلى أنها لا تستطيع استبعاد القلق بشأن تأثيره على المادة الوراثية. ما زال مسموحًا به في مصر.",
+            "en": "Banned as a food additive in the European Union since 2022, after the European Food Safety Authority concluded it could not rule out a concern about effects on genetic material. It remains permitted in Egypt."
+          }
+        ]
+      },
+      {
+        "name": {
+          "ar": "إريثروسين",
+          "en": "Erythrosine"
+        },
+        "eNumber": "E127",
+        "purpose": {
+          "ar": "لون أحمر. لا وظيفة له غير المظهر.",
+          "en": "Red colour. It has no function other than appearance."
+        },
+        "restrictions": [
+          {
+            "ar": "سحبت إدارة الغذاء والدواء الأمريكية ترخيصه في الأغذية والأدوية المبتلعة في 15 يناير 2025، بعد أورام في الغدة الدرقية لدى ذكور الجرذان. ما زال مسموحًا به في مصر.",
+            "en": "The United States Food and Drug Administration revoked its authorisation in food and ingested drugs on 15 January 2025, after thyroid tumours in male rats. It remains permitted in Egypt."
+          }
+        ]
+      },
+      {
+        "name": {
+          "ar": "أزرق لامع",
+          "en": "Brilliant blue"
+        },
+        "eNumber": "E133",
+        "purpose": {
+          "ar": "لون أزرق. لا وظيفة له غير المظهر.",
+          "en": "Blue colour. It has no function other than appearance."
+        },
+        "restrictions": []
+      },
+      {
+        "name": {
+          "ar": "كارموازين",
+          "en": "Carmoisine"
+        },
+        "eNumber": "E122",
+        "purpose": {
+          "ar": "لون أحمر. لا وظيفة له غير المظهر.",
+          "en": "Red colour. It has no function other than appearance."
+        },
+        "restrictions": [
+          {
+            "ar": "أحد ستة ألوان يوجب الاتحاد الأوروبي كتابة تحذير على أي غذاء يحتوي عليها، بأنها قد تؤثر سلبًا على النشاط والانتباه عند الأطفال. غير مسموح به في الأغذية في الولايات المتحدة. ما زال مسموحًا به في مصر.",
+            "en": "One of six colours for which the European Union requires a statement on any food containing them, that they may have an adverse effect on activity and attention in children. Not permitted in food in the United States. It remains permitted in Egypt."
+          }
+        ]
+      },
+      {
+        "name": {
+          "ar": "أصفر الكينولين",
+          "en": "Quinoline yellow"
+        },
+        "eNumber": "E104",
+        "purpose": {
+          "ar": "لون أصفر. لا وظيفة له غير المظهر.",
+          "en": "Yellow colour. It has no function other than appearance."
+        },
+        "restrictions": [
+          {
+            "ar": "أحد الستة نفسها، ويحمل التحذير نفسه في الاتحاد الأوروبي. غير مسموح به في الأغذية في الولايات المتحدة. ما زال مسموحًا به في مصر.",
+            "en": "One of the same six, carrying the same statement in the European Union. Not permitted in food in the United States. It remains permitted in Egypt."
+          }
+        ]
+      }
+    ],
+    "warnings": [
+      {
+        "id": "adults-only",
+        "text": {
+          "ar": "للبالغين فقط.",
+          "en": "For adults only."
+        },
+        "origin": "carton"
+      },
+      {
+        "id": "consult-first",
+        "text": {
+          "ar": "إذا كنتِ حاملًا أو مرضعة، أو كنت تتناول أي دواء وخاصة مضادات التجلط، أو لديك حالة مرضية مثل حصوات الكلى، استشر طبيبك قبل الاستخدام.",
+          "en": "If you are pregnant or nursing, taking any medication and especially anticoagulants, or have a medical condition such as kidney stones, consult your doctor before use."
+        },
+        "origin": "carton"
+      },
+      {
+        "id": "stop-on-reaction",
+        "text": {
+          "ar": "إذا ظهر أي تفاعل ضار، أو تجاوزت الجرعة اليومية الموصى بها، أوقف المنتج فورًا واستشر طبيبك.",
+          "en": "If any adverse reaction occurs, or you exceed the recommended daily amount, stop the product immediately and consult your doctor."
+        },
+        "origin": "carton"
+      },
+      {
+        "id": "allergy",
+        "text": {
+          "ar": "لا تستخدمه إذا كان لديك حساسية من أي من مكوّناته.",
+          "en": "Do not use it if you are allergic to any of its ingredients."
+        },
+        "origin": "carton"
+      },
+      {
+        "id": "keep-away-from-children",
+        "text": {
+          "ar": "يُحفظ في عبوته الأصلية بعيدًا عن متناول الأطفال.",
+          "en": "Keep in the original package out of reach of children."
+        },
+        "origin": "carton"
+      },
+      {
+        "id": "chicken-allergen",
+        "text": {
+          "ar": "يحتوي هذا المنتج على كولاجين مستخلص من غضروف عظم صدر الدجاج. لا تتناوله إذا كان لديك حساسية من الدجاج أو الدواجن. غير مناسب للنباتيين.",
+          "en": "This product contains collagen made from chicken sternum cartilage. Do not take it if you are allergic to chicken or poultry. It is not suitable for vegetarians."
+        },
+        "origin": "added"
+      },
+      {
+        "id": "piperine-interaction",
+        "text": {
+          "ar": "يحتوي على مستخلص فلفل أسود. البيبيرين يمكن أن يرفع مستوى أدوية أخرى في الدم لأنه يثبّط إنزيم CYP3A4. إذا كنت تتناول أي دواء بانتظام، اسأل طبيبك أو الصيدلي قبل البدء.",
+          "en": "Contains black pepper extract. Piperine can raise the blood level of other medicines because it inhibits the enzyme CYP3A4. If you take any medicine regularly, ask your doctor or pharmacist before starting."
+        },
+        "origin": "added"
+      },
+      {
+        "id": "bleeding-signal",
+        "text": {
+          "ar": "الكركم واللبان والفلفل الأسود كلها ترتبط بإشارات تخصّ زيادة الميل للنزف. إذا كنت تتناول مضادًا للتجلط أو مضادًا للصفائح، أو كانت لديك عملية جراحية قريبة، اسأل طبيبك أولًا.",
+          "en": "Turmeric, Boswellia and black pepper all carry signals related to an increased tendency to bleed. If you take an anticoagulant or an antiplatelet medicine, or have surgery coming, ask your doctor first."
+        },
+        "origin": "added"
+      }
+    ],
+    "interactionChecks": [
+      {
+        "id": "anticoagulant",
+        "question": {
+          "ar": "هل تتناول دواءً مسيّلًا للدم أو مضادًا للصفائح، مثل الوارفارين أو الأسبرين؟",
+          "en": "Do you take a blood thinner or an antiplatelet medicine, such as warfarin or aspirin?"
+        },
+        "ifYes": {
+          "ar": "لا تبدأ هذا المنتج قبل أن تسأل طبيبك. الكركم واللبان والفلفل الأسود قد تزيد ميل الدم للنزف، والفلفل الأسود قد يغيّر مستوى الدواء نفسه في الدم.",
+          "en": "Do not start this product before asking your doctor. Turmeric, Boswellia and black pepper may increase the tendency to bleed, and black pepper may change the blood level of the medicine itself."
+        },
+        "severity": "stop-and-ask-a-doctor"
+      },
+      {
+        "id": "chicken-allergy",
+        "question": {
+          "ar": "هل لديك حساسية من الدجاج أو الدواجن؟",
+          "en": "Are you allergic to chicken or poultry?"
+        },
+        "ifYes": {
+          "ar": "لا تتناول هذا المنتج. الكولاجين فيه مستخلص من غضروف عظم صدر الدجاج.",
+          "en": "Do not take this product. The collagen in it is made from chicken sternum cartilage."
+        },
+        "severity": "do-not-take"
+      },
+      {
+        "id": "pregnancy",
+        "question": {
+          "ar": "هل أنتِ حامل أو مرضعة؟",
+          "en": "Are you pregnant or nursing?"
+        },
+        "ifYes": {
+          "ar": "لا تبدئي هذا المنتج قبل استشارة طبيبك. هذا هو التحذير المكتوب على العبوة نفسها.",
+          "en": "Do not start this product before consulting your doctor. This is the warning printed on the pack itself."
+        },
+        "severity": "stop-and-ask-a-doctor"
+      },
+      {
+        "id": "regular-medication",
+        "question": {
+          "ar": "هل تتناول أي دواء بانتظام، لأي سبب؟",
+          "en": "Do you take any medicine regularly, for any reason?"
+        },
+        "ifYes": {
+          "ar": "اسأل طبيبك أو الصيدلي. البيبيرين في مستخلص الفلفل الأسود يثبّط إنزيم CYP3A4 وناقل البروتين السكري P، وهما يتحكمان في امتصاص وتصفية كثير من الأدوية التي تؤخذ عن طريق الفم.",
+          "en": "Ask your doctor or pharmacist. The piperine in the black pepper extract inhibits the enzyme CYP3A4 and the transporter P-glycoprotein, which control the absorption and clearance of many oral medicines."
+        },
+        "severity": "stop-and-ask-a-doctor"
+      },
+      {
+        "id": "kidney-stones",
+        "question": {
+          "ar": "هل سبق أن كانت لديك حصوات في الكلى؟",
+          "en": "Have you ever had kidney stones?"
+        },
+        "ifYes": {
+          "ar": "استشر طبيبك قبل الاستخدام. هذا هو التحذير المكتوب على العبوة، والكركم غني بالأوكسالات.",
+          "en": "Consult your doctor before use. This is the warning printed on the pack, and turmeric is high in oxalate."
+        },
+        "severity": "stop-and-ask-a-doctor"
+      }
+    ],
+    "claims": [
+      {
+        "id": "ucii-vs-glucosamine",
+        "statement": {
+          "ar": "في تجربة سريرية على 52 مريضًا استمرت 90 يومًا، خفّض كولاجين UC-II الألم بنحو 40 بالمئة، مقابل 15.4 بالمئة لمزيج الجلوكوزامين والكوندرويتين.",
+          "en": "In a 90 day clinical trial in 52 patients, UC-II collagen reduced pain by about 40 percent, against 15.4 percent for glucosamine plus chondroitin."
+        },
+        "supportedBy": "crowley-2009",
+        "qualifications": [
+          {
+            "ar": "عدد المشاركين صغير، 52 مريضًا فقط.",
+            "en": "The number of participants is small, only 52 patients."
+          },
+          {
+            "ar": "موّلت التجربة الشركة المصنّعة للمكوّن.",
+            "en": "The trial was funded by the manufacturer of the ingredient."
+          },
+          {
+            "ar": "مزيج الجلوكوزامين والكوندرويتين نفسه يقترب من الدواء الوهمي في التجارب المستقلة الكبيرة، فالمقارنة معه ليست معيارًا عاليًا.",
+            "en": "Glucosamine plus chondroitin itself performs close to placebo in large independent trials, so a comparison against it is not a high benchmark."
+          },
+          {
+            "ar": "قيست النتيجة بعد 90 يومًا، وليس بعد أسبوع.",
+            "en": "The result was measured at 90 days, not at one week."
+          }
+        ],
+        "paths": [
+          "pain"
+        ]
+      },
+      {
+        "id": "ucii-continuous-use",
+        "statement": {
+          "ar": "يحتاج هذا المنتج إلى تناول منتظم يوميًا، لأن آلية عمله تعتمد على التحمّل الفموي الذي يزول إذا توقف التناول.",
+          "en": "This product needs regular daily intake, because it works through oral tolerance, which fades if intake stops."
+        },
+        "supportedBy": "lugo-2016",
+        "qualifications": [
+          {
+            "ar": "قيست نتائج التجارب عند 90 و180 يومًا.",
+            "en": "The trial outcomes were measured at 90 and 180 days."
+          }
+        ]
+      },
+      {
+        "id": "ucii-time-to-effect",
+        "statement": {
+          "ar": "قيست نتائج تجارب كولاجين UC-II بعد 90 و180 يومًا من التناول المنتظم كل يوم.",
+          "en": "The UC-II collagen trials measured their results after 90 and 180 days of regular daily intake."
+        },
+        "supportedBy": "lugo-2016",
+        "qualifications": [
+          {
+            "ar": "آلية التحمّل الفموي تحتاج أسابيع حتى تستقرّ، وتعتمد على الاستمرار في التناول.",
+            "en": "The oral tolerance mechanism takes weeks to establish, and depends on continuing to take it."
+          }
+        ]
+      },
+      {
+        "id": "ucii-oa-womac",
+        "paths": [
+          "pain"
+        ],
+        "statement": {
+          "ar": "في تجربة على 191 شخصًا لديهم خشونة في الركبة، استمرت 180 يومًا، تحسّن الألم والتيبّس والقدرة على الحركة مع كولاجين UC-II أكثر من الدواء الوهمي، وأكثر من مزيج الجلوكوزامين والكوندرويتين.",
+          "en": "In a 180 day trial in 191 people with knee osteoarthritis, pain, stiffness and the ability to move improved more with UC-II collagen than with placebo, and more than with glucosamine plus chondroitin."
+        },
+        "supportedBy": "lugo-2016",
+        "qualifications": [
+          {
+            "ar": "قيست النتيجة بعد 180 يومًا. لا تتوقع فرقًا خلال أسبوع.",
+            "en": "The result was measured at 180 days. Do not expect a difference within a week."
+          },
+          {
+            "ar": "اثنان من الباحثين الثلاثة موظفان في الشركة المصنّعة للمكوّن.",
+            "en": "Two of the three authors are employees of the company that makes the ingredient."
+          }
+        ]
+      },
+      {
+        "id": "ucii-active-knee",
+        "paths": [
+          "prevention"
+        ],
+        "statement": {
+          "ar": "في تجربة على 55 شخصًا أصحّاء، لا يعانون من أي التهاب مفاصل ولا ألم في الراحة، لكنهم يشعرون بانزعاج في الركبة أثناء المجهود، استمرت 120 يومًا، اتسع مدى فرد الركبة مع كولاجين UC-II مقارنةً بالدواء الوهمي، 81.0 درجة مقابل 74.0 درجة. وتحمّلوا المجهود ضعف المدة تقريبًا قبل أن يبدأ الانزعاج، من 1.4 دقيقة إلى 2.8 دقيقة.",
+          "en": "In a 120 day trial in 55 healthy people, with no arthritis and no pain at rest but who felt knee discomfort during exertion, knee extension widened with UC-II collagen compared with placebo, 81.0 degrees against 74.0 degrees. They also exerted themselves for about twice as long before discomfort began, from 1.4 minutes to 2.8 minutes."
+        },
+        "supportedBy": "lugo-2013-active",
+        "qualifications": [
+          {
+            "ar": "المشاركون لم يكونوا رياضيين محترفين. كانوا أشخاصًا أصحّاء يشعرون بانزعاج في الركبة عند بذل مجهود.",
+            "en": "The participants were not competitive athletes. They were healthy people who felt knee discomfort when they exerted themselves."
+          },
+          {
+            "ar": "رقم مدة المجهود قورن بحالتهم قبل بدء التجربة، لا بمجموعة الدواء الوهمي. مجموعة الدواء الوهمي لم تتغيّر تغيّرًا يُعتد به.",
+            "en": "The exertion time figure is compared with their own state before the trial began, not against the placebo group. The placebo group did not change meaningfully."
+          },
+          {
+            "ar": "عدد المشاركين صغير، 55 شخصًا.",
+            "en": "The number of participants is small, 55 people."
+          },
+          {
+            "ar": "موّلت الشركة المصنّعة للمكوّن التجربة، وثلاثة من الباحثين موظفون فيها.",
+            "en": "The company that makes the ingredient funded the trial, and three of the authors are its employees."
+          }
+        ]
+      }
+    ],
+    "citations": [
+      {
+        "id": "crowley-2009",
+        "authors": "Crowley and colleagues",
+        "year": 2009,
+        "journal": "International Journal of Medical Sciences",
+        "participants": 52,
+        "durationDays": 90,
+        "url": "https://www.medsci.org/v06p0312",
+        "fundedByIngredientManufacturer": "yes"
+      },
+      {
+        "id": "lugo-2016",
+        "authors": "Lugo, Saiyed and Lane",
+        "year": 2016,
+        "journal": "Nutrition Journal",
+        "participants": 191,
+        "durationDays": 180,
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731911/",
+        "fundedByIngredientManufacturer": "yes",
+        "population": {
+          "ar": "أشخاص لديهم خشونة في الركبة",
+          "en": "people with knee osteoarthritis"
+        }
+      },
+      {
+        "id": "sengupta-2008",
+        "authors": "Sengupta and colleagues",
+        "year": 2008,
+        "journal": "Arthritis Research and Therapy",
+        "participants": null,
+        "durationDays": 90,
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2575633/",
+        "fundedByIngredientManufacturer": "not-checked"
+      },
+      {
+        "id": "boswellin-2024",
+        "authors": "Boswellin Super trial authors, several employed by the extract manufacturer",
+        "year": 2024,
+        "journal": "Frontiers in Nutrition",
+        "participants": 105,
+        "durationDays": 90,
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11291344/",
+        "fundedByIngredientManufacturer": "yes"
+      },
+      {
+        "id": "curcumin-meta-2021",
+        "authors": "Systematic review and meta-analysis of high and low dose curcumin",
+        "year": 2021,
+        "journal": "Complementary Therapies in Medicine",
+        "participants": null,
+        "durationDays": null,
+        "url": "https://www.sciencedirect.com/science/article/pii/S0965229921001163",
+        "fundedByIngredientManufacturer": "not-checked"
+      },
+      {
+        "id": "oral-ha-2012",
+        "authors": "Oral polymer hyaluronic acid knee osteoarthritis trial",
+        "year": 2012,
+        "journal": "Nutrition Journal",
+        "participants": null,
+        "durationDays": 365,
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3512263/",
+        "fundedByIngredientManufacturer": "not-checked"
+      },
+      {
+        "id": "piperine-cyp3a4",
+        "authors": "Predicting food and drug interactions between piperine and CYP3A4 substrate drugs",
+        "year": 2024,
+        "journal": "Pharmaceutics",
+        "participants": null,
+        "durationDays": null,
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11506926/",
+        "fundedByIngredientManufacturer": "not-checked"
+      },
+      {
+        "id": "lugo-2013-active",
+        "authors": "Lugo, Saiyed, Lau, Molina, Pakdaman, Shamie and Udani",
+        "year": 2013,
+        "journal": "Journal of the International Society of Sports Nutrition",
+        "participants": 55,
+        "durationDays": 120,
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24153020/",
+        "fundedByIngredientManufacturer": "yes",
+        "population": {
+          "ar": "أشخاص أصحّاء يشعرون بانزعاج في الركبة أثناء المجهود",
+          "en": "healthy people who feel knee discomfort during exertion"
+        }
+      }
+    ]
+  },
+  "flags": {
+    "restrictions": true,
+    "timeToEffect": true
+  },
+  "plates": {
+    "ucii": "../../assets/plates/ucii.webp",
+    "turmeric": "../../assets/plates/turmeric.webp",
+    "boswellia": "../../assets/plates/boswellia.webp",
+    "resveratrol": "../../assets/plates/resveratrol.webp",
+    "hyaluronic-acid": "../../assets/plates/hyaluronic-acid.webp",
+    "black-pepper": "../../assets/plates/black-pepper.webp"
+  }
+}

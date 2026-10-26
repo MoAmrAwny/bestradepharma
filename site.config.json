@@ -1,0 +1,14 @@
+{
+  "siteName": "Bestrade Pharma",
+  "author": "Bestrade Pharma Company, El Obour, Cairo",
+
+  "_comment_baseUrl": "The domain you own. This is the ONE value that can never change once boxes are printed. Everything else is swappable.",
+  "baseUrl": "https://example.com",
+
+  "_comment_customDomain": "Written to dist/CNAME for GitHub Pages. Leave empty until the domain is bought.",
+  "customDomain": "",
+
+  "assetsPath": "../../assets",
+  "defaultLang": "ar",
+  "themeColor": "#5B4E96"
+}

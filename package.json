@@ -1,0 +1,14 @@
+{
+  "name": "product-leaflets",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static QR-linked product leaflets",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node build.js && npx --yes serve dist",
+    "qr": "python3 tools/make_qr.py"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

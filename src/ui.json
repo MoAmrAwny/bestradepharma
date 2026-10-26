@@ -1,0 +1,210 @@
+{
+  "pageTitle": {
+    "ar": "يوسيبي — نشرة المنتج",
+    "en": "Yucebii — product leaflet"
+  },
+  "tagline": {
+    "ar": "كل ما تحتاج معرفته عن هذه العبوة.",
+    "en": "Everything you need to know about this pack."
+  },
+  "chooseDoor": {
+    "ar": "ما الذي جاء بك إلى هنا؟",
+    "en": "What brings you here?"
+  },
+  "doorHint": {
+    "ar": "اختر واحدًا. يمكنك تغييره في أي وقت.",
+    "en": "Pick one. You can change it any time."
+  },
+  "secWhat": {
+    "ar": "عن هذا المنتج",
+    "en": "About this product"
+  },
+  "secHow": {
+    "ar": "كيف تأخذه",
+    "en": "How to take it"
+  },
+  "secInside": {
+    "ar": "ما بداخل الكبسولة",
+    "en": "What is inside the capsule"
+  },
+  "secEvidence": {
+    "ar": "ما تقوله الدراسات",
+    "en": "What the studies say"
+  },
+  "evidenceIntro": {
+    "ar": "الرقم أولاً، ثم ما ينقصه.",
+    "en": "The number first, then what is missing from it."
+  },
+  "qualsHeading": {
+    "ar": "ما يجب أن تعرفه عن هذا الرقم",
+    "en": "What to know about this number"
+  },
+  "people": {
+    "ar": "شخصًا",
+    "en": "people"
+  },
+  "days": {
+    "ar": "يومًا",
+    "en": "days"
+  },
+  "secAvoid": {
+    "ar": "متى لا تأخذه",
+    "en": "When not to take it"
+  },
+  "secOther": {
+    "ar": "ماذا أيضًا في الكبسولة",
+    "en": "What else is in the capsule"
+  },
+  "secContact": {
+    "ar": "من تتصل به",
+    "en": "Who to contact"
+  },
+  "tapForFact": {
+    "ar": "اكتشفني",
+    "en": "Discover me"
+  },
+  "tapToClose": {
+    "ar": "اضغط للإغلاق",
+    "en": "Tap to close"
+  },
+  "funFact": {
+    "ar": "حقيقة طريفة",
+    "en": "Fun fact"
+  },
+  "howItWorks": {
+    "ar": "كيف يعمل",
+    "en": "How it works"
+  },
+  "amountLabel": {
+    "ar": "الكمية في الكبسولة",
+    "en": "Amount in the capsule"
+  },
+  "sourceLabel": {
+    "ar": "من أين يأتي",
+    "en": "Where it comes from"
+  },
+  "checkIntro": {
+    "ar": "خمسة أسئلة. أي إجابة بنعم تعني أن تسأل قبل أن تبدأ.",
+    "en": "Five questions. Any yes means ask before you start."
+  },
+  "yes": {
+    "ar": "نعم",
+    "en": "Yes"
+  },
+  "no": {
+    "ar": "لا",
+    "en": "No"
+  },
+  "doNotTake": {
+    "ar": "لا تتناوله",
+    "en": "Do not take it"
+  },
+  "askDoctor": {
+    "ar": "اسأل طبيبك أولًا",
+    "en": "Ask your doctor first"
+  },
+  "allClear": {
+    "ar": "لا شيء من هذه الأسئلة ينطبق عليك.",
+    "en": "None of these apply to you."
+  },
+  "warningsTitle": {
+    "ar": "تحذيرات العبوة",
+    "en": "The warnings on the pack"
+  },
+  "colourNote": {
+    "ar": "أربعة من هذه المواد لون فقط. لا تفعل شيئًا للمفصل، ونذكرها لأن من حقك أن تعرف ما تبتلعه.",
+    "en": "Four of these are colour only. They do nothing for the joint, and we list them because you have a right to know what you swallow."
+  },
+  "storage": {
+    "ar": "التخزين",
+    "en": "Storage"
+  },
+  "madeBy": {
+    "ar": "التصنيع",
+    "en": "Made by"
+  },
+  "madeFor": {
+    "ar": "لحساب",
+    "en": "Made for"
+  },
+  "regLabel": {
+    "ar": "رقم التسجيل",
+    "en": "Registration number"
+  },
+  "phone": {
+    "ar": "الهاتف",
+    "en": "Telephone"
+  },
+  "web": {
+    "ar": "الموقع",
+    "en": "Website"
+  },
+  "back": {
+    "ar": "رجوع",
+    "en": "Back"
+  },
+  "backToDoors": {
+    "ar": "تغيير الاختيار",
+    "en": "Change my choice"
+  },
+  "notMedicine": {
+    "ar": "هذا مكمّل غذائي، وليس دواءً.",
+    "en": "This is a food supplement, not a medicine."
+  },
+  "painLead": {
+    "ar": "ما تقوله الدراسات أولًا، ثم الجرعة ومتى تتوقع فرقًا، ثم ما يخصّ سلامتك.",
+    "en": "What the studies say first, then the dose and when to expect a difference, then what concerns your safety."
+  },
+  "prevLead": {
+    "ar": "ابدأ من المكوّنات نفسها: ما هي، وكم منها هنا، وكم استخدمت التجارب.",
+    "en": "Start from the ingredients themselves: what they are, how much is here, and how much the trials used."
+  },
+  "standNotLabel": {
+    "ar": "ما لا تذكره العبوة",
+    "en": "What the pack does not state"
+  },
+  "compareLabel": {
+    "ar": "هذه الكمية مقابل جرعة التجارب",
+    "en": "This amount against the trial dose"
+  },
+  "verdictMatches": {
+    "ar": "تطابق جرعة التجارب",
+    "en": "Matches the trial dose"
+  },
+  "verdictLowEnd": {
+    "ar": "عند الحد الأدنى للنطاق الفعّال",
+    "en": "At the low end of the effective range"
+  },
+  "verdictBelow": {
+    "ar": "أقل من جرعة التجارب",
+    "en": "Below the trial dose"
+  },
+  "verdictNotComparable": {
+    "ar": "لا يمكن مقارنتها",
+    "en": "Cannot be compared"
+  },
+  "restrictionLabel": {
+    "ar": "وضعه في دول أخرى",
+    "en": "Its status in other countries"
+  },
+  "gelatinHeading": {
+    "ar": "عن مصدر الجيلاتين",
+    "en": "About the gelatin source"
+  },
+  "expectHeading": {
+    "ar": "متى تتوقع فرقًا",
+    "en": "When to expect a difference"
+  },
+  "nsAllergen": {
+    "ar": "تنبيه الحساسية",
+    "en": "Allergy notice"
+  },
+  "ifYesLabel": {
+    "ar": "إذا كانت إجابتك نعم:",
+    "en": "If your answer is yes:"
+  },
+  "metaDesc": {
+    "ar": "مكمّل غذائي لصحة المفاصل. المكوّنات والجرعة والتحذيرات وما تقوله الدراسات. تسجيل الهيئة القومية لسلامة الغذاء 5332/2023.",
+    "en": "A joint-health food supplement. The ingredients, the dose, the warnings and what the studies say. Food Safety Authority registration 5332/2023."
+  }
+}

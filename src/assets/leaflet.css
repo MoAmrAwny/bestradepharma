@@ -1,0 +1,249 @@
+
+@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/amiri-400-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/amiri-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/amiri-700-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'Amiri';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/amiri-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-400-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-600-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+
+:root{
+  --ground:#F5F7F6; --clay:#E6E0D6; --amber:#C97B2E; --saffron:#E8A020;
+  --ink:#2B241E; --sage:#6E7A63; --resin:#16100C;
+  --purple:#5B4E96;
+  --accent:var(--amber); --muted:#6A6259; --line:#E2E4E1;
+  --display:"Amiri",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+  --pad:20px; --radius:18px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--ground); color:var(--ink); font-family:var(--body);
+  font-size:17px; line-height:1.65; -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:560px;margin:0 auto;padding:0 var(--pad) 72px}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.25;margin:0}
+h1{font-size:44px;letter-spacing:.01em}
+h2{font-size:27px;margin:0 0 4px}
+h3{font-size:21px}
+p{margin:0 0 14px}
+a{color:var(--amber)}
+.sub{color:var(--muted);font-size:15px}
+.rule{height:1px;background:var(--line);border:0;margin:34px 0}
+
+/* Masthead, brand mark and footer carry the institutional purple.
+   Everything between them keeps the sage and amber path accents. */
+.masthead{
+  display:flex;align-items:center;gap:11px;
+  padding:16px 0 12px;border-bottom:2px solid var(--purple)
+}
+.masthead img{height:28px;width:auto;display:block;flex:0 0 auto}
+.masthead .mark{
+  font-family:var(--display);font-size:12.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--purple);font-weight:700;line-height:1.2
+}
+
+.bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 10px;
+  position:sticky;top:0;z-index:30;background:var(--ground)
+}
+body[data-path] .bar{box-shadow:0 1px 0 var(--line)}
+.topback{
+  display:none;align-items:center;gap:8px;font:inherit;font-size:14.5px;font-weight:600;
+  background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;
+  color:var(--ink);cursor:pointer
+}
+.topback:hover{border-color:var(--accent)}
+.topback .arw{font-size:17px;line-height:1;color:var(--accent)}
+body[data-path] .topback{display:inline-flex}
+body[data-path] #reg{display:none}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{
+  font:inherit;font-size:14px;font-weight:600;border:0;background:transparent;color:var(--muted);
+  padding:7px 15px;cursor:pointer
+}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+
+.hero{padding:16px 0 8px}
+.hero p{font-size:19px;color:var(--muted);margin-top:12px}
+
+.doors{display:grid;gap:12px;margin:18px 0 8px}
+.door{
+  display:block;width:100%;text-align:start;font:inherit;cursor:pointer;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease
+}
+.door:hover,.door:focus-visible{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 22px rgba(43,36,30,.07)}
+.door .big{font-family:var(--display);font-size:24px;display:block;margin-bottom:3px}
+.door .small{font-size:14px;color:var(--muted)}
+
+main{display:flex;flex-direction:column}
+section{padding:8px 0 4px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
+.lead{font-size:19px}
+
+.dose{
+  background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px 24px;margin:6px 0 4px
+}
+.dose .n{font-family:var(--display);font-size:56px;line-height:1;display:block}
+.dose .t{font-size:17px;opacity:.86;margin-top:10px;display:block}
+
+/* When to expect a difference. Sits under the dose, where the question gets asked. */
+.expect{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-top:14px}
+.expect .lbl{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.expect p{margin:0;font-size:16.5px}
+.expect ul{margin:10px 0 0;padding:0;list-style:none}
+.expect li{position:relative;padding-inline-start:18px;font-size:14.5px;color:var(--muted);margin-bottom:6px}
+.expect li::before{content:"";position:absolute;inset-inline-start:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--clay)}
+
+.cards{display:grid;gap:14px;margin-top:6px}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+  cursor:pointer;transition:border-color .16s ease,box-shadow .16s ease
+}
+.card:hover{border-color:var(--clay);box-shadow:0 8px 22px rgba(43,36,30,.06)}
+.card .plate{position:relative;aspect-ratio:1/1;background:var(--ground)}
+.card .plate img{width:100%;height:100%;object-fit:cover;display:block}
+.card .plate .cue{
+  position:absolute;inset-inline-end:12px;inset-block-end:12px;
+  background:rgba(255,255,255,.93);color:var(--ink);border-radius:999px;
+  font-size:12.5px;font-weight:600;padding:7px 13px;box-shadow:0 2px 10px rgba(43,36,30,.1)
+}
+.card .body{padding:18px 20px 20px}
+.card .nm{font-family:var(--display);font-size:21px;line-height:1.3}
+.card .amt{font-size:14px;color:var(--muted);margin-top:3px}
+.card .fact{display:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line)}
+.card.open .fact{display:block;animation:rise .28s ease}
+.card.open .cue{display:none}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fact .tag{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--saffron);font-weight:600}
+.fact h3{margin:6px 0 8px}
+.fact .mech{margin-top:12px;font-size:15px;color:var(--muted)}
+.fact .mech b{color:var(--ink);font-weight:600;display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.fact .src{margin-top:10px;font-size:14px;color:var(--muted)}
+.allergen{margin-top:12px;background:#FBF2E6;border-inline-start:3px solid var(--amber);padding:11px 14px;border-radius:8px;font-size:15px}
+
+/* What the pack does not state. A dashed edge reads as an absence, not a fault. */
+.stand{margin-top:13px;padding:13px 15px;border-radius:10px;background:#FAF8F4;border:1px dashed var(--clay)}
+.stand .lbl,.cmp .lbl{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
+.stand p,.cmp p{margin:0;font-size:15px;color:var(--muted);line-height:1.6}
+
+/* This amount against the trial dose. Four calm treatments, no alarm colour. */
+.cmp{margin-top:11px;padding:13px 15px;border-radius:10px;background:var(--ground);border-inline-start:3px solid var(--clay)}
+.cmp .vd{display:inline-block;font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:9px;line-height:1.4}
+.cmp.v-matches{background:#F1F4EF;border-inline-start:3px solid var(--sage)}
+.cmp.v-matches .vd{background:#E1E9DB;color:#46523C}
+.cmp.v-low-end-of-effective-range{background:#FBF7EF;border-inline-start:3px solid var(--saffron)}
+.cmp.v-low-end-of-effective-range .vd{background:#F2E7D1;color:#775E30}
+.cmp.v-below-trial-dose{background:#F8F5F0;border-inline-start:3px solid var(--clay)}
+.cmp.v-below-trial-dose .vd{background:#EAE2D6;color:#685B47}
+.cmp.v-not-comparable{background:#F4F5F3;border-inline-start:3px solid #B9BFB6}
+.cmp.v-not-comparable .vd{background:#E5E8E3;color:#575E55}
+
+.check{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:6px 20px;margin-top:8px}
+.q{padding:16px 0;border-bottom:1px solid var(--line)}
+.q:last-child{border-bottom:0}
+.q .qt{font-size:16.5px;margin-bottom:10px}
+.q .btns{display:flex;gap:8px}
+.q button{
+  font:inherit;font-size:15px;font-weight:600;padding:7px 20px;border-radius:999px;
+  border:1px solid var(--line);background:var(--ground);color:var(--muted);cursor:pointer
+}
+.q button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.q .ans{display:none;margin-top:12px;font-size:15.5px;padding:13px 15px;border-radius:10px}
+.q.show .ans{display:block}
+.q .ans.sev-do-not-take{background:#FAEAE6;border-inline-start:3px solid #B4442A}
+.q .ans.sev-stop-and-ask-a-doctor{background:#FBF2E6;border-inline-start:3px solid var(--amber)}
+.q .ans b{display:block;margin-bottom:4px;font-weight:600}
+
+.ev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 18px;margin-top:8px}
+.ev + .ev{margin-top:12px}
+.ev .stmt{font-size:18px;line-height:1.6;margin:0 0 14px}
+.ev .who{font-size:13.5px;color:var(--muted);padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ev .qh{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:14px 0 8px}
+.ev ul{margin:0;padding:0;list-style:none}
+.ev ul li{position:relative;padding-inline-start:20px;margin-bottom:9px;font-size:15px;color:var(--muted)}
+.ev ul li::before{content:"";position:absolute;inset-inline-start:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--clay)}
+.ev .src{margin-top:12px;font-size:13.5px}
+.ev .src a{color:var(--accent)}
+.warns{margin:10px 0 0;padding:0;list-style:none}
+.warns li{position:relative;padding-inline-start:22px;margin-bottom:11px;font-size:16px}
+.warns li::before{content:"";position:absolute;inset-inline-start:0;top:10px;width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.warns li.added::before{background:var(--sage)}
+.warns-title{margin-top:26px}
+
+/* The gelatin source. The most-asked question in this market gets its own block. */
+.gel{
+  background:#fff;border:1px solid var(--line);border-inline-start:4px solid var(--ink);
+  border-radius:var(--radius);padding:18px 20px;margin:14px 0 6px
+}
+.gel h3{font-size:19px;margin-bottom:7px}
+.gel p{margin:0;font-size:15.5px;line-height:1.6}
+
+.other{width:100%;border-collapse:collapse;margin-top:10px;font-size:15.5px}
+.other td{padding:13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.other td:last-child{text-align:end;color:var(--muted);white-space:nowrap;padding-inline-start:12px}
+.other .why{font-size:14px;color:var(--muted);margin-top:4px}
+.restr{
+  margin-top:9px;padding-inline-start:12px;border-inline-start:2px solid var(--clay);
+  font-size:14px;color:var(--muted);line-height:1.6
+}
+.restr b{
+  display:block;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:600;margin-bottom:3px
+}
+
+.facts{margin:10px 0 0;padding:0;list-style:none;font-size:15.5px}
+.facts li{padding:11px 0;border-bottom:1px solid var(--line)}
+.facts li b{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:3px}
+.call{
+  display:block;text-align:center;background:var(--ink);color:#fff;text-decoration:none;
+  border-radius:var(--radius);padding:17px;font-weight:600;font-size:18px;margin-top:18px
+}
+.foot{
+  margin-top:30px;padding-top:16px;border-top:2px solid var(--purple);
+  font-size:14px;color:var(--muted)
+}
+.backlink{background:none;border:0;font:inherit;color:var(--amber);cursor:pointer;padding:0;margin-top:22px;font-size:15px}
+
+body[data-path] .hero{padding:12px 0 4px}
+body[data-path] .hero h1{font-size:32px}
+body[data-path] .hero p{font-size:17px;margin-top:8px}
+body.reg-pain{--accent:var(--sage);font-size:18px}
+body.reg-pain .card .plate{aspect-ratio:16/9}
+body.reg-pain .hero h1{font-size:38px}
+body.reg-prevention{--accent:var(--amber)}
+body[data-path] .doors,body[data-path] #chooseDoor,body[data-path] #doorHint{display:none}
+body:not([data-path]) main,body:not([data-path]) .backlink{display:none}
+
+/* The no-JavaScript document. Not a fallback notice, the leaflet itself. */
+.ns{padding:14px 0 4px}
+.ns + .ns{margin-top:30px;padding-top:26px;border-top:1px solid var(--line)}
+.ns h2{font-size:28px;margin-bottom:10px}
+.ns h3{font-size:17px;margin:24px 0 9px}
+.ns p{font-size:16px}
+.ns .nsdose{background:var(--ink);color:#fff;border-radius:var(--radius);padding:18px 20px;font-size:17px}
+.ns ul{margin:0;padding:0;list-style:none}
+.ns li{position:relative;padding-inline-start:21px;margin-bottom:10px;font-size:16px}
+.ns li::before{content:"";position:absolute;inset-inline-start:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--amber)}
+.ns li.qa{padding-inline-start:0;margin-bottom:14px}
+.ns li.qa::before{display:none}
+.ns .qq{font-weight:600}
+.ns .aa{color:var(--muted);font-size:15px;line-height:1.6}
+.ns .nsfoot{margin-top:24px;padding-top:15px;border-top:2px solid var(--purple);font-size:15px}
+.ns .nsfoot a{color:var(--purple);font-weight:600;text-decoration:none}
+.ns .nsnote{font-size:14px;color:var(--muted);margin-top:18px}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:380px){
+  :root{--pad:16px}
+  h1{font-size:36px}
+  .dose .n{font-size:46px}
+  .card .body{padding:16px 16px 18px}
+  .check{padding:4px 16px}
+  .ev{padding:18px 17px 15px}
+  .other td:last-child{padding-inline-start:8px}
+}
