@@ -10,13 +10,29 @@
 
 
 :root{
-  --ground:#F5F7F6; --clay:#E6E0D6; --amber:#C97B2E; --saffron:#E8A020;
-  --ink:#2B241E; --sage:#6E7A63; --resin:#16100C;
-  --purple:#5B4E96;
-  --accent:var(--amber); --muted:#6A6259; --line:#E2E4E1;
+  /* Palette sampled from bestradepharma.com: brand blue on white, near-black
+     body text, cool neutral rules. The warm palette this replaced is gone, but
+     the SEMANTIC colours below are deliberately not blue — a warning that looks
+     like a link is a warning nobody reads. */
+  --brand:#083F88; --brand-deep:#052B5E; --brand-soft:#EAF0F8;
+
+  --ground:#F6F8FB; --ink:#28262B; --muted:#6B7280;
+  --line:#E3E7EE; --clay:#DCE3ED;
+
+  /* Caution (allergens, pack warnings, ask-a-doctor) and good (dose matches
+     the trial). These carry meaning on a medicine leaflet. Do not flatten
+     them into the brand colour for the sake of a tidier palette. */
+  --amber:#B4690E; --saffron:#C47F12; --sage:#1F7A5C;
+  --caution-soft:#FDF4E7; --good-soft:#EFF6F2;
+
+  --resin:#0B1220; --purple:var(--brand); --accent:var(--brand);
+
+  /* Amiri stays for Arabic, where a serif is the right call and the corporate
+     site has no opinion. Latin headings use the sans, which is closer to the
+     geometric sans on bestradepharma.com. */
   --display:"Amiri",Georgia,"Times New Roman",serif;
   --body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
-  --pad:20px; --radius:18px;
+  --pad:20px; --radius:8px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -29,8 +45,11 @@ h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.25;margin:0}
 h1{font-size:44px;letter-spacing:.01em}
 h2{font-size:27px;margin:0 0 4px}
 h3{font-size:21px}
+html[lang=en] h1,html[lang=en] h2,html[lang=en] h3{
+  font-family:var(--body);font-weight:600;letter-spacing:-.01em
+}
 p{margin:0 0 14px}
-a{color:var(--amber)}
+a{color:var(--brand)}
 .sub{color:var(--muted);font-size:15px}
 .rule{height:1px;background:var(--line);border:0;margin:34px 0}
 
@@ -53,19 +72,19 @@ a{color:var(--amber)}
 body[data-path] .bar{box-shadow:0 1px 0 var(--line)}
 .topback{
   display:none;align-items:center;gap:8px;font:inherit;font-size:14.5px;font-weight:600;
-  background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;
+  background:#fff;border:1px solid var(--line);border-radius:4px;padding:8px 16px;
   color:var(--ink);cursor:pointer
 }
 .topback:hover{border-color:var(--accent)}
 .topback .arw{font-size:17px;line-height:1;color:var(--accent)}
 body[data-path] .topback{display:inline-flex}
 body[data-path] #reg{display:none}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
 .lang button{
   font:inherit;font-size:14px;font-weight:600;border:0;background:transparent;color:var(--muted);
   padding:7px 15px;cursor:pointer
 }
-.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.lang button[aria-pressed=true]{background:var(--brand);color:#fff}
 
 .hero{padding:16px 0 8px}
 .hero p{font-size:19px;color:var(--muted);margin-top:12px}
@@ -76,7 +95,7 @@ body[data-path] #reg{display:none}
   background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   padding:20px 22px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease
 }
-.door:hover,.door:focus-visible{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 22px rgba(43,36,30,.07)}
+.door:hover,.door:focus-visible{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 22px rgba(8,63,136,.09)}
 .door .big{font-family:var(--display);font-size:24px;display:block;margin-bottom:3px}
 .door .small{font-size:14px;color:var(--muted)}
 
@@ -86,7 +105,7 @@ section{padding:8px 0 4px}
 .lead{font-size:19px}
 
 .dose{
-  background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px 24px;margin:6px 0 4px
+  background:var(--brand);color:#fff;border-radius:var(--radius);padding:26px 24px;margin:6px 0 4px
 }
 .dose .n{font-family:var(--display);font-size:56px;line-height:1;display:block}
 .dose .t{font-size:17px;opacity:.86;margin-top:10px;display:block}
@@ -104,13 +123,13 @@ section{padding:8px 0 4px}
   background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
   cursor:pointer;transition:border-color .16s ease,box-shadow .16s ease
 }
-.card:hover{border-color:var(--clay);box-shadow:0 8px 22px rgba(43,36,30,.06)}
+.card:hover{border-color:var(--clay);box-shadow:0 8px 22px rgba(8,63,136,.07)}
 .card .plate{position:relative;aspect-ratio:1/1;background:var(--ground)}
 .card .plate img{width:100%;height:100%;object-fit:cover;display:block}
 .card .plate .cue{
   position:absolute;inset-inline-end:12px;inset-block-end:12px;
-  background:rgba(255,255,255,.93);color:var(--ink);border-radius:999px;
-  font-size:12.5px;font-weight:600;padding:7px 13px;box-shadow:0 2px 10px rgba(43,36,30,.1)
+  background:rgba(255,255,255,.93);color:var(--ink);border-radius:4px;
+  font-size:12.5px;font-weight:600;padding:7px 13px;box-shadow:0 2px 10px rgba(8,63,136,.12)
 }
 .card .body{padding:18px 20px 20px}
 .card .nm{font-family:var(--display);font-size:21px;line-height:1.3}
@@ -124,21 +143,21 @@ section{padding:8px 0 4px}
 .fact .mech{margin-top:12px;font-size:15px;color:var(--muted)}
 .fact .mech b{color:var(--ink);font-weight:600;display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
 .fact .src{margin-top:10px;font-size:14px;color:var(--muted)}
-.allergen{margin-top:12px;background:#FBF2E6;border-inline-start:3px solid var(--amber);padding:11px 14px;border-radius:8px;font-size:15px}
+.allergen{margin-top:12px;background:var(--caution-soft);border-inline-start:3px solid var(--amber);padding:11px 14px;border-radius:8px;font-size:15px}
 
 /* What the pack does not state. A dashed edge reads as an absence, not a fault. */
-.stand{margin-top:13px;padding:13px 15px;border-radius:10px;background:#FAF8F4;border:1px dashed var(--clay)}
+.stand{margin-top:13px;padding:13px 15px;border-radius:10px;background:#F7F9FC;border:1px dashed var(--clay)}
 .stand .lbl,.cmp .lbl{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:6px}
 .stand p,.cmp p{margin:0;font-size:15px;color:var(--muted);line-height:1.6}
 
 /* This amount against the trial dose. Four calm treatments, no alarm colour. */
 .cmp{margin-top:11px;padding:13px 15px;border-radius:10px;background:var(--ground);border-inline-start:3px solid var(--clay)}
-.cmp .vd{display:inline-block;font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:9px;line-height:1.4}
-.cmp.v-matches{background:#F1F4EF;border-inline-start:3px solid var(--sage)}
+.cmp .vd{display:inline-block;font-size:12.5px;font-weight:600;padding:4px 12px;border-radius:4px;margin-bottom:9px;line-height:1.4}
+.cmp.v-matches{background:var(--good-soft);border-inline-start:3px solid var(--sage)}
 .cmp.v-matches .vd{background:#E1E9DB;color:#46523C}
-.cmp.v-low-end-of-effective-range{background:#FBF7EF;border-inline-start:3px solid var(--saffron)}
+.cmp.v-low-end-of-effective-range{background:#FDF7EC;border-inline-start:3px solid var(--saffron)}
 .cmp.v-low-end-of-effective-range .vd{background:#F2E7D1;color:#775E30}
-.cmp.v-below-trial-dose{background:#F8F5F0;border-inline-start:3px solid var(--clay)}
+.cmp.v-below-trial-dose{background:#F4F6F9;border-inline-start:3px solid var(--clay)}
 .cmp.v-below-trial-dose .vd{background:#EAE2D6;color:#685B47}
 .cmp.v-not-comparable{background:#F4F5F3;border-inline-start:3px solid #B9BFB6}
 .cmp.v-not-comparable .vd{background:#E5E8E3;color:#575E55}
@@ -149,14 +168,14 @@ section{padding:8px 0 4px}
 .q .qt{font-size:16.5px;margin-bottom:10px}
 .q .btns{display:flex;gap:8px}
 .q button{
-  font:inherit;font-size:15px;font-weight:600;padding:7px 20px;border-radius:999px;
+  font:inherit;font-size:15px;font-weight:600;padding:7px 20px;border-radius:4px;
   border:1px solid var(--line);background:var(--ground);color:var(--muted);cursor:pointer
 }
 .q button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
 .q .ans{display:none;margin-top:12px;font-size:15.5px;padding:13px 15px;border-radius:10px}
 .q.show .ans{display:block}
 .q .ans.sev-do-not-take{background:#FAEAE6;border-inline-start:3px solid #B4442A}
-.q .ans.sev-stop-and-ask-a-doctor{background:#FBF2E6;border-inline-start:3px solid var(--amber)}
+.q .ans.sev-stop-and-ask-a-doctor{background:var(--caution-soft);border-inline-start:3px solid var(--amber)}
 .q .ans b{display:block;margin-bottom:4px;font-weight:600}
 
 .ev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 22px 18px;margin-top:8px}
@@ -212,10 +231,10 @@ section{padding:8px 0 4px}
 body[data-path] .hero{padding:12px 0 4px}
 body[data-path] .hero h1{font-size:32px}
 body[data-path] .hero p{font-size:17px;margin-top:8px}
-body.reg-pain{--accent:var(--sage);font-size:18px}
+body.reg-pain{--accent:var(--brand);font-size:18px}
 body.reg-pain .card .plate{aspect-ratio:16/9}
 body.reg-pain .hero h1{font-size:38px}
-body.reg-prevention{--accent:var(--amber)}
+body.reg-prevention{--accent:var(--brand)}
 body[data-path] .doors,body[data-path] #chooseDoor,body[data-path] #doorHint{display:none}
 body:not([data-path]) main,body:not([data-path]) .backlink{display:none}
 

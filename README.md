@@ -101,9 +101,11 @@ restriction. Either way the domain is what keeps the codes alive.
 
 ## Before the first print run
 
-- [ ] Buy the domain. Prepay ten years, enable auto-renew and registrar lock.
-- [ ] Set `baseUrl` in `site.config.json` to that domain.
-- [ ] Put the domain's DNS on Cloudflare so redirect rules are available later.
+- [ ] Confirm the company (not an agency or former contractor) controls the
+      `bestradepharma.com` registration. Enable auto-renew and registrar lock.
+- [ ] Point a subdomain (e.g. `qr.bestradepharma.com`) at GitHub Pages with a
+      CNAME record, and set it in repo Settings → Pages → Custom domain.
+- [ ] Set `baseUrl` in `site.config.json` to that subdomain.
 - [ ] Generate codes, print one at final size on real carton stock, and scan it
       with a cheap phone — creased, scuffed, under pharmacy lighting.
 - [ ] Have regulatory affairs confirm the leaflet content and the QR placement
