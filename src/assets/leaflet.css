@@ -266,3 +266,36 @@ body:not([data-path]) main,body:not([data-path]) .backlink{display:none}
   .ev{padding:18px 17px 15px}
   .other td:last-child{padding-inline-start:8px}
 }
+
+/* Product directory at the site root (build.js → buildIndex). */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.directory .hero p{font-size:17px}
+.psearch{display:block;margin:18px 0 4px}
+.psearch input{
+  width:100%;font:inherit;font-size:16px;padding:12px 14px;background:#fff;color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--radius)
+}
+.psearch input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+.plist{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
+.pcard{
+  display:flex;align-items:center;gap:16px;padding:14px;background:#fff;color:var(--ink);
+  text-decoration:none;border:1px solid var(--line);border-radius:var(--radius);
+  transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease
+}
+.pcard:hover,.pcard:focus-visible{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 8px 22px rgba(8,63,136,.09)}
+.pmedia{
+  flex:0 0 76px;width:76px;height:76px;border-radius:6px;overflow:hidden;
+  background:var(--brand-soft);display:flex;align-items:center;justify-content:center
+}
+.pmedia img{width:100%;height:100%;object-fit:contain;display:block}
+.pmono{font-family:var(--body);font-weight:600;font-size:32px;color:var(--brand)}
+.pbody{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
+.pname{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.3}
+html[lang=en] .pname{font-family:var(--body);font-weight:600;font-size:19px}
+.pcat{font-size:14.5px;color:var(--muted);line-height:1.45}
+.preg{font-size:12.5px;color:var(--muted);letter-spacing:.04em;align-self:flex-start}
+.pgo{flex:0 0 auto;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--brand)}
+.pgo .arw::after{content:"←"}
+html[dir=ltr] .pgo .arw::after{content:"→"}
+@media (max-width:420px){.pgo>span:first-child{display:none}.pgo .arw{font-size:20px}}
+.pnone{margin-top:14px}

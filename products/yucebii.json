@@ -5,6 +5,10 @@
         "ar": "يوسيبي",
         "en": "Yucebii"
       },
+      "category": {
+        "ar": "مكمّل غذائي لصحة المفاصل",
+        "en": "Joint-health food supplement"
+      },
       "straplineClaimId": "ucii-vs-glucosamine",
       "capsulesPerPack": 30,
       "dose": {

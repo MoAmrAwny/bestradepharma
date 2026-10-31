@@ -31,6 +31,8 @@ ingredients. Leave a flag off rather than inventing content for it.
 | Field | Type | Notes |
 |---|---|---|
 | `name` | LocalizedText | Brand name as printed on the box |
+| `category` | LocalizedText | Optional. One short line under the name on the product directory, e.g. "Joint-health food supplement" |
+| `cardImage` | string | Optional. Pack photo for the product directory, relative to `src/assets/` (e.g. `products/<code>.webp`). Square-ish works best. Without it the card shows the name's first letter. Use a real photo of the actual pack, never a generated mock-up. |
 | `straplineClaimId` | string | id of the claim used as the page strapline |
 | `capsulesPerPack` | number | |
 | `dose` | LocalizedText | Full sentence, e.g. "One capsule daily, with or without food. Adults only." |
