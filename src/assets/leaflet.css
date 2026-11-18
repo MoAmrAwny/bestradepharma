@@ -1,23 +1,15 @@
-
-@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/amiri-400-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
-@font-face{font-family:'Amiri';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/amiri-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'Amiri';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/amiri-700-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
-@font-face{font-family:'Amiri';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/amiri-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-400-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
-@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-600-arabic.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1}
-@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/ibm-plex-sans-arabic-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
-
+/* The interactive leaflet (/p/<code>/ pages of type "leaflet").
+   Loaded before site.css, which owns fonts, header, footer and page bands.
+   Everything here is scoped to .leaflet so it cannot leak into the site chrome. */
 
 :root{
-  /* Palette sampled from bestradepharma.com: brand blue on white, near-black
-     body text, cool neutral rules. The warm palette this replaced is gone, but
-     the SEMANTIC colours below are deliberately not blue — a warning that looks
-     like a link is a warning nobody reads. */
-  --brand:#083F88; --brand-deep:#052B5E; --brand-soft:#EAF0F8;
+  /* Site palette (site.css) mapped onto the leaflet's names. The SEMANTIC
+     colours below are deliberately not blue: a warning that looks like a link
+     is a warning nobody reads. */
+  --brand:#0B56B5; --brand-deep:#052B5E; --brand-soft:#F2F6FB;
 
-  --ground:#F6F8FB; --ink:#28262B; --muted:#6B7280;
-  --line:#E3E7EE; --clay:#DCE3ED;
+  --ground:#F2F6FB; --ink:#141414; --muted:#4a5563;
+  --line:#e3e6ea; --clay:#d3dae4;
 
   /* Caution (allergens, pack warnings, ask-a-doctor) and good (dose matches
      the trial). These carry meaning on a medicine leaflet. Do not flatten
@@ -25,82 +17,52 @@
   --amber:#B4690E; --saffron:#C47F12; --sage:#1F7A5C;
   --caution-soft:#FDF4E7; --good-soft:#EFF6F2;
 
-  --resin:#0B1220; --purple:var(--brand); --accent:var(--brand);
+  --resin:#0B1220; --purple:var(--brand-deep); --accent:var(--brand);
 
-  /* Amiri stays for Arabic, where a serif is the right call and the corporate
-     site has no opinion. Latin headings use the sans, which is closer to the
-     geometric sans on bestradepharma.com. */
   --display:"Amiri",Georgia,"Times New Roman",serif;
   --body:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
   --pad:20px; --radius:8px;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;padding:0}
-body{
-  background:var(--ground); color:var(--ink); font-family:var(--body);
-  font-size:17px; line-height:1.65; -webkit-text-size-adjust:100%;
-}
-.wrap{max-width:560px;margin:0 auto;padding:0 var(--pad) 72px}
-h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.25;margin:0}
-h1{font-size:44px;letter-spacing:.01em}
-h2{font-size:27px;margin:0 0 4px}
-h3{font-size:21px}
-html[lang=en] h1,html[lang=en] h2,html[lang=en] h3{
-  font-family:var(--body);font-weight:600;letter-spacing:-.01em
-}
-p{margin:0 0 14px}
-a{color:var(--brand)}
-.sub{color:var(--muted);font-size:15px}
-.rule{height:1px;background:var(--line);border:0;margin:34px 0}
+.leaflet{font-size:17px;line-height:1.65;color:var(--ink)}
+body.reg-pain .leaflet{font-size:18px}
+.container.leaflet-body{max-width:860px;padding-top:32px;padding-bottom:72px}
+.leaflet h2,.leaflet h3{font-family:var(--display);font-weight:700;line-height:1.25;margin:0;color:var(--brand-deep)}
+.leaflet h2{font-size:30px;margin:0 0 4px}
+.leaflet h3{font-size:21px}
+html[lang=en] .leaflet h2,html[lang=en] .leaflet h3{font-family:var(--body);font-weight:600;letter-spacing:-.01em}
+.leaflet p{margin:0 0 14px}
+.leaflet a{color:var(--brand)}
+.leaflet .sub{color:var(--muted);font-size:15px}
+.leaflet .rule{height:1px;background:var(--line);border:0;margin:34px 0}
 
-/* Masthead, brand mark and footer carry the institutional purple.
-   Everything between them keeps the sage and amber path accents. */
-.masthead{
-  display:flex;align-items:center;gap:11px;
-  padding:16px 0 12px;border-bottom:2px solid var(--purple)
-}
-.masthead img{height:28px;width:auto;display:block;flex:0 0 auto}
-.masthead .mark{
-  font-family:var(--display);font-size:12.5px;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--purple);font-weight:700;line-height:1.2
-}
-
-.bar{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0 10px;
-  position:sticky;top:0;z-index:30;background:var(--ground)
-}
-body[data-path] .bar{box-shadow:0 1px 0 var(--line)}
+.leaflet .bar{display:none;align-items:center;gap:12px;padding:0 0 16px}
+body[data-path] .leaflet .bar{display:flex}
 .topback{
-  display:none;align-items:center;gap:8px;font:inherit;font-size:14.5px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;font:inherit;font-size:14.5px;font-weight:600;
   background:#fff;border:1px solid var(--line);border-radius:4px;padding:8px 16px;
   color:var(--ink);cursor:pointer
 }
 .topback:hover{border-color:var(--accent)}
 .topback .arw{font-size:17px;line-height:1;color:var(--accent)}
-body[data-path] .topback{display:inline-flex}
-body[data-path] #reg{display:none}
-.lang{display:inline-flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;background:#fff}
-.lang button{
-  font:inherit;font-size:14px;font-weight:600;border:0;background:transparent;color:var(--muted);
-  padding:7px 15px;cursor:pointer
-}
-.lang button[aria-pressed=true]{background:var(--brand);color:#fff}
 
-.hero{padding:16px 0 8px}
-.hero p{font-size:19px;color:var(--muted);margin-top:12px}
-
-.doors{display:grid;gap:12px;margin:18px 0 8px}
+/* The doors: two big choices, navy like the prototype's entry cards. */
+.doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:16px;margin:20px 0 8px}
 .door{
-  display:block;width:100%;text-align:start;font:inherit;cursor:pointer;
-  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-  padding:20px 22px;transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease
+  display:flex;flex-direction:column;gap:8px;width:100%;min-height:180px;justify-content:flex-end;
+  text-align:start;font:inherit;cursor:pointer;color:#fff;background:var(--brand-deep);
+  border:1px solid var(--brand-deep);border-radius:var(--radius);padding:28px;
+  transition:transform .3s ease,box-shadow .3s ease,background-color .3s ease
 }
-.door:hover,.door:focus-visible{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 22px rgba(8,63,136,.09)}
-.door .big{font-family:var(--display);font-size:24px;display:block;margin-bottom:3px}
-.door .small{font-size:14px;color:var(--muted)}
+.door:nth-child(2){background:var(--brand);border-color:var(--brand)}
+.door:hover,.door:focus-visible{transform:translateY(-4px);box-shadow:0 12px 28px rgba(10,10,10,.12)}
+.door .big{font-family:var(--display);font-size:32px;font-weight:700;line-height:1.2;display:block}
+.door .small{font-size:15px;color:rgba(255,255,255,.88)}
+.door .small::after{content:"  →";font-weight:700}
+html[dir=rtl] .door .small::after{content:"  ←"}
 
-main{display:flex;flex-direction:column}
-section{padding:8px 0 4px}
+.leaflet main{display:flex;flex-direction:column}
+.leaflet section{padding:8px 0 4px}
+
 .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:8px}
 .lead{font-size:19px}
 
@@ -228,15 +190,10 @@ section{padding:8px 0 4px}
 }
 .backlink{background:none;border:0;font:inherit;color:var(--amber);cursor:pointer;padding:0;margin-top:22px;font-size:15px}
 
-body[data-path] .hero{padding:12px 0 4px}
-body[data-path] .hero h1{font-size:32px}
-body[data-path] .hero p{font-size:17px;margin-top:8px}
-body.reg-pain{--accent:var(--brand);font-size:18px}
+body:not([data-path]) .leaflet main,body:not([data-path]) .leaflet .backlink{display:none}
+body[data-path] .leaflet .doors,body[data-path] #chooseDoor,body[data-path] #doorHint{display:none}
 body.reg-pain .card .plate{aspect-ratio:16/9}
-body.reg-pain .hero h1{font-size:38px}
-body.reg-prevention{--accent:var(--brand)}
-body[data-path] .doors,body[data-path] #chooseDoor,body[data-path] #doorHint{display:none}
-body:not([data-path]) main,body:not([data-path]) .backlink{display:none}
+.cards{grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
 
 /* The no-JavaScript document. Not a fallback notice, the leaflet itself. */
 .ns{padding:14px 0 4px}
@@ -256,46 +213,15 @@ body:not([data-path]) main,body:not([data-path]) .backlink{display:none}
 .ns .nsfoot a{color:var(--purple);font-weight:600;text-decoration:none}
 .ns .nsnote{font-size:14px;color:var(--muted);margin-top:18px}
 
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media (max-width:380px){
+
+@media (max-width:600px){
   :root{--pad:16px}
-  h1{font-size:36px}
+  .leaflet-body{padding-top:24px}
+  .door{min-height:150px;padding:22px}
+  .door .big{font-size:27px}
   .dose .n{font-size:46px}
   .card .body{padding:16px 16px 18px}
   .check{padding:4px 16px}
   .ev{padding:18px 17px 15px}
   .other td:last-child{padding-inline-start:8px}
 }
-
-/* Product directory at the site root (build.js → buildIndex). */
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.directory .hero p{font-size:17px}
-.psearch{display:block;margin:18px 0 4px}
-.psearch input{
-  width:100%;font:inherit;font-size:16px;padding:12px 14px;background:#fff;color:var(--ink);
-  border:1px solid var(--line);border-radius:var(--radius)
-}
-.psearch input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
-.plist{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:12px}
-.pcard{
-  display:flex;align-items:center;gap:16px;padding:14px;background:#fff;color:var(--ink);
-  text-decoration:none;border:1px solid var(--line);border-radius:var(--radius);
-  transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease
-}
-.pcard:hover,.pcard:focus-visible{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 8px 22px rgba(8,63,136,.09)}
-.pmedia{
-  flex:0 0 76px;width:76px;height:76px;border-radius:6px;overflow:hidden;
-  background:var(--brand-soft);display:flex;align-items:center;justify-content:center
-}
-.pmedia img{width:100%;height:100%;object-fit:contain;display:block}
-.pmono{font-family:var(--body);font-weight:600;font-size:32px;color:var(--brand)}
-.pbody{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:2px}
-.pname{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.3}
-html[lang=en] .pname{font-family:var(--body);font-weight:600;font-size:19px}
-.pcat{font-size:14.5px;color:var(--muted);line-height:1.45}
-.preg{font-size:12.5px;color:var(--muted);letter-spacing:.04em;align-self:flex-start}
-.pgo{flex:0 0 auto;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--brand)}
-.pgo .arw::after{content:"←"}
-html[dir=ltr] .pgo .arw::after{content:"→"}
-@media (max-width:420px){.pgo>span:first-child{display:none}.pgo .arw{font-size:20px}}
-.pnone{margin-top:14px}

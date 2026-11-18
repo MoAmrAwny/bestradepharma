@@ -1,112 +1,164 @@
-# Product leaflets
+# bestradepharma.com
 
-Static leaflet pages for pharmaceutical and supplement products, reached by a
-QR code printed on the box.
+The company website for Bestrade Pharma, in English and Arabic, and the product
+pages that the QR codes on the boxes open. Plain static HTML built by one Node
+script; no framework, no server.
 
-A printed QR code cannot be changed. Everything in this repo is arranged around
-that single fact: the code encodes a stable URL on a domain you own, and every
-other layer — host, redirect, page content — stays swappable without
-reprinting. See [`redirects/README.md`](redirects/README.md) for how that works
-in practice.
+A printed QR code cannot be changed. The product pages are arranged around that
+fact: each code encodes `https://bestradepharma.com/p/<code>/`, and every other
+layer (host, redirect, page content) stays swappable without reprinting. See
+[`redirects/README.md`](redirects/README.md) for how that works in practice.
+
+## Pages
+
+| Page | English | Arabic |
+|---|---|---|
+| Home | `/` | `/ar/` |
+| Products | `/products/` | `/ar/products/` |
+| About | `/about/` | `/ar/about/` |
+| Contact | `/contact/` | `/ar/contact/` |
+| Product | `/p/<code>/` | same URL |
+
+Company pages are separate files per language; the header link switches to the
+same page in the other language.
+
+Product pages keep **one URL** with a language switch in the header. They open
+in Arabic (`defaultLang` in `site.config.json`) unless the reader picked
+English before or the link carries `?lang=en`. The company pages link to
+products with `?lang=` so an English visitor stays in English. A scanned QR
+code carries no `?lang` and behaves as it always has.
+
+**Never rename a file in `products/`.** Its name is the `<code>` in a printed URL.
+Current codes: `renehavis`, `sportvis`, `trud`, `ricogenex`, `cuidado`, `yucebii`.
 
 ## Layout
 
 ```
-site.config.json        domain, site name, default language
-products/<code>.json    ONE file per product. The only thing you write per product.
-src/ui.json             interface labels (ar/en). Shared by every product.
-src/template.html       page skeleton
-src/shell.html          the DOM the renderers fill
-src/assets/leaflet.js   the section renderers — single source of truth for markup
-src/assets/leaflet.css  styles
+site.config.json        domain, contact form, Tag Manager, WhatsApp number
+products/<code>.json    ONE file per product
+src/site.json           text of the company pages, header and footer (ar/en)
+src/ui.json             labels of the interactive leaflet (ar/en)
+src/template.html       page skeleton shared by every page
+src/shell.html          the DOM the leaflet renderers fill
+src/assets/site.css     site styles (header, footer, company pages, profiles)
+src/assets/site.js      motion and the product-page language switch
+src/assets/leaflet.js   leaflet renderers: single source of truth for leaflet markup
+src/assets/leaflet.css  leaflet styles
+src/assets/img/         photos: hero-cairo.jpg, <code>.png pack cut-outs
 src/assets/fonts/       Amiri + IBM Plex Sans Arabic, split by unicode-range
-src/assets/plates/      ingredient images (WebP)
-build.js                prerenders every product to dist/
+src/assets/plates/      leaflet ingredient images (WebP)
+build.js                builds everything into dist/
 tools/make_qr.py        print-ready QR codes
 dist/                   build output. Deploy this. Not committed.
-qr/                     generated QR codes. Not committed.
 ```
 
-## Build
+## Build and preview
 
 ```bash
 npm install
 node build.js
-```
-
-Output lands in `dist/`, with each product at `dist/p/<code>/index.html`.
-Serve it locally with any static server:
-
-```bash
 npx serve dist
 ```
 
-## Adding a product
+The build lists every product page it wrote and flags the ones still missing a
+pack photo.
 
-1. Copy `products/yucebii.json` to `products/<new-code>.json`.
-2. Replace the contents of `data`. Everything else — labels, fonts, renderers,
-   styles — is shared and needs no change.
-3. Add any new ingredient images to `src/assets/plates/` and point `plates` at
-   them.
-4. `node build.js`
-5. `python3 tools/make_qr.py`
+## Editing text
 
-Pick `<new-code>` once and never change it. It becomes part of a printed URL.
+- Company pages, header, footer, phone numbers, address, timeline: `src/site.json`.
+  Write digits as 0–9; Arabic pages get Arabic-Indic digits automatically.
+- A product's text: its `products/<code>.json`. Product and medical text comes
+  only from the approved leaflet. Never write new medical claims here.
 
-See [`products/SCHEMA.md`](products/SCHEMA.md) for the fields.
+## Adding or editing a product
 
-## How the prerendering works
+There are two kinds of product page, chosen by `"type"` in the file.
 
-The renderers in `src/assets/leaflet.js` run twice: once here at build time
-under jsdom, producing finished HTML, and again in the browser for language
-switching and the interactive sections. There is no second hand-written copy of
-the leaflet, so the static version cannot drift from the data.
+**`"type": "profile"`**: a short page with facts, use and how to use. Copy
+`products/ricogenex.json` and fill in:
+
+| Field | Notes |
+|---|---|
+| `data.product.name` | `{ "ar": ..., "en": ... }`. Cards show the English name. |
+| `data.product.category` | One short line, e.g. "Food supplement · sachets" |
+| `data.product.summary` | One or two sentences for the card and the page |
+| `data.product.group` | `device` or `supplement`: which list it appears in |
+| `data.product.order` | Position in the lists, 1 first |
+| `data.product.color` | Accent for the placeholder pack until a photo exists |
+| `data.product.patients` | Patients treated in Egypt. 0 hides the number. |
+| `data.product.sourceNote` | `true` shows "to be replaced by the approved leaflet" |
+| `data.facts[]` | `{ "label": {ar,en}, "value": {ar,en} }` |
+| `data.uses[]` | `{ar,en}` per indication. Optional. |
+| `data.steps[]` | `{ar,en}` per step. Optional. |
+
+**No `type` (or `"type": "leaflet"`)**: the full interactive leaflet with reader
+paths, ingredient cards, evidence and safety checks, as for `yucebii`. Fields
+are described in [`products/SCHEMA.md`](products/SCHEMA.md). For the product
+lists it also uses `cardCategory`, `summary`, `group`, `order` and `color`.
+
+When a product's approved leaflet arrives, replace the profile text with the
+approved text and set `sourceNote` to `false` (or move it to the full leaflet
+type).
+
+Then:
+
+1. Pack photo: save a transparent cut-out as `src/assets/img/<code>.png`
+   (or `.webp`/`.jpg`). The build picks it up; until then a labelled placeholder
+   shows. Use a real photo of the actual pack, never a generated mock-up.
+2. `node build.js`
+3. New product only: `python3 tools/make_qr.py` for its QR code.
+
+The hero photo is `src/assets/img/hero-cairo.jpg` (wide, at least 2400 px).
+
+## Contact form, WhatsApp and tracking
+
+In `site.config.json`:
+
+- `contactFormEndpoint`: a Formspree (or similar) form URL. While empty, the
+  contact page shows a WhatsApp button in place of the form.
+- `whatsapp`: international number without `+`, used for every WhatsApp link.
+- `gtmId`: Google Tag Manager container (`GTM-XXXXXXX`). While empty, no
+  tracking code is added. GA4 and the Meta Pixel are configured inside Tag
+  Manager, not here.
+
+## Deploying (Cloudflare Pages)
+
+1. Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git →
+   pick this repository.
+2. Build command `node build.js`, build output directory `dist`, production
+   branch `main`. Node version comes from `.node-version`.
+3. Every push to `main` deploys; every other branch gets a preview at
+   `<branch>.<project>.pages.dev`. Test there first.
+4. Going live: in the Pages project → Custom domains, add `bestradepharma.com`
+   and `www.bestradepharma.com` (DNS must already be on Cloudflare). To undo,
+   remove the custom domains.
+
+`dist/404.html` is served for unknown URLs.
+
+## How the leaflet prerendering works
+
+The renderers in `src/assets/leaflet.js` run twice: once at build time under
+jsdom, producing finished HTML, and again in the browser for language switching
+and the interactive sections. There is no second hand-written copy of the
+leaflet, so the static version cannot drift from the data.
 
 With JavaScript disabled the landing view would only show the path chooser,
-whose buttons need JS — not acceptable for safety information. So the build
-also renders the full leaflet, in both languages, into a `<noscript>` block.
-That block is generated from the same data as everything else.
+whose buttons need JS, which is not acceptable for safety information. So the
+build also renders the full leaflet, in both languages, into a `<noscript>`
+block generated from the same data. Profile pages show both languages one after
+the other when JavaScript is off.
 
-## Weight
+## Motion
 
-Measured on the Yucebii page:
-
-| | uncompressed | over the wire (gzip) |
-|---|---|---|
-| Product page | 82 KB | ~20 KB |
-| CSS | 17 KB | ~3 KB |
-| JS | 17 KB | ~4 KB |
-| Fonts (8 files, unicode-range split) | 169 KB | already compressed |
-| Ingredient images (6 WebP) | 187 KB | already compressed |
-
-Fonts, CSS and JS are shared across every product and cached after the first
-scan. A second product costs roughly 20 KB over the wire plus its own images.
-
-The original single-file version was 719 KB for one product, with nothing
-cacheable between products.
-
-## Deploying
-
-The repo builds and deploys to GitHub Pages via
-`.github/workflows/deploy.yml` on every push to `main`.
-
-Cloudflare Pages works from the same repo with no changes — build command
-`node build.js`, output directory `dist`. Moving between the two is a DNS
-change; the printed codes do not know or care which one is serving.
-
-Note that GitHub's own documentation says Pages is not intended for commercial
-business hosting. In practice nothing happens to a site this small, but it is a
-term you would be operating against, and Cloudflare Pages has no equivalent
-restriction. Either way the domain is what keeps the codes alive.
+`src/assets/site.js` adds the fade-up on scroll, the patient count-up and the
+header shadow. All motion is off under `prefers-reduced-motion`, and the HTML
+always holds the final numbers, so nothing depends on the script.
 
 ## Before the first print run
 
-- [ ] Confirm the company (not an agency or former contractor) controls the
-      `bestradepharma.com` registration. Enable auto-renew and registrar lock.
-- [ ] Point a subdomain (e.g. `qr.bestradepharma.com`) at GitHub Pages with a
-      CNAME record, and set it in repo Settings → Pages → Custom domain.
-- [ ] Set `baseUrl` in `site.config.json` to that subdomain.
+- [ ] Confirm the company controls the `bestradepharma.com` registration.
+      Enable auto-renew and registrar lock.
 - [ ] Generate codes, print one at final size on real carton stock, and scan it
-      with a cheap phone — creased, scuffed, under pharmacy lighting.
+      with a cheap phone: creased, scuffed, under pharmacy lighting.
 - [ ] Have regulatory affairs confirm the leaflet content and the QR placement
       against EDA requirements before anything goes to press.

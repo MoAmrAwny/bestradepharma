@@ -12,9 +12,15 @@
   var path = null;
   var body = document.body;
 
-  /* Language survives a reload. Arabic when storage is unavailable or unreadable. */
+  /* Language: ?lang=ar|en (set by links from the company pages) wins, then the
+     reader's last choice, then Arabic. A printed QR code carries no ?lang, so
+     a scan behaves exactly as before. */
   function readLang(){
     if (window.__PRERENDER_LANG) return window.__PRERENDER_LANG;
+    try {
+      var m = /[?&]lang=(ar|en)(?:&|$)/.exec(window.location.search);
+      if (m){ saveLang(m[1]); return m[1]; }
+    } catch (e) {}
     try {
       var v = window.localStorage.getItem(LANGKEY);
       if (v === "ar" || v === "en") return v;
@@ -371,7 +377,7 @@
       path ? t(leadFor(path)) : t(UI.tagline);
     document.getElementById("chooseDoor").textContent = t(UI.chooseDoor);
     document.getElementById("doorHint").textContent = t(UI.doorHint);
-    document.getElementById("reg").textContent = t(D.product.countryOfManufacture);
+    document.getElementById("reg").textContent = t(D.product.category) || t(D.product.countryOfManufacture);
     document.getElementById("disclaimer").textContent = t(D.product.disclaimer);
     document.getElementById("back").textContent = t(UI.backToDoors);
     document.getElementById("topbacktext").textContent = t(UI.back);
@@ -394,6 +400,14 @@
   for (var k2 = 0; k2 < btns.length; k2++){
     btns[k2].setAttribute("aria-pressed", String(btns[k2].getAttribute("data-lang") === lang));
   }
+
+  /* The site header owns the language switch; it calls this (src/assets/site.js). */
+  window.LeafletSetLang = function(next){
+    if (next !== "ar" && next !== "en") return;
+    lang = next;
+    saveLang(lang);
+    renderAll();
+  };
 
   function goTo(next, push){
     path = next;

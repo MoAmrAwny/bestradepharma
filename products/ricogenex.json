@@ -1,0 +1,79 @@
+{
+  "type": "profile",
+  "data": {
+    "product": {
+      "name": {
+        "ar": "Ricogenex",
+        "en": "Ricogenex"
+      },
+      "group": "supplement",
+      "order": 4,
+      "color": "#052B5E",
+      "patients": 33000,
+      "sourceNote": true,
+      "category": {
+        "ar": "مكمّل غذائي · أكياس",
+        "en": "Food supplement · sachets"
+      },
+      "summary": {
+        "ar": "كولاجين بحري متحلّل، أكثر من 8 جم في الكيس، مع فيتامين سي وفيتامين د3.",
+        "en": "Marine collagen hydrolysate, more than 8 g per sachet, with vitamin C and vitamin D3."
+      }
+    },
+    "facts": [
+      {
+        "label": {
+          "ar": "الكولاجين",
+          "en": "Collagen"
+        },
+        "value": {
+          "ar": "أكثر من 8 جم كولاجين بحري متحلّل",
+          "en": "More than 8 g marine collagen hydrolysate"
+        }
+      },
+      {
+        "label": {
+          "ar": "الفيتامينات",
+          "en": "Vitamins"
+        },
+        "value": {
+          "ar": "فيتامين سي وفيتامين د3",
+          "en": "Vitamin C and vitamin D3"
+        }
+      },
+      {
+        "label": {
+          "ar": "الجرعة",
+          "en": "Dose"
+        },
+        "value": {
+          "ar": "كيس واحد يوميًا لمدة 3 أشهر على الأقل",
+          "en": "One sachet daily for at least 3 months"
+        }
+      }
+    ],
+    "uses": [],
+    "steps": [
+      {
+        "ar": "أفرغ الكيس في كوب.",
+        "en": "Empty the sachet into a cup."
+      },
+      {
+        "ar": "أضف 200 مل ماء أو عصير أو لبن.",
+        "en": "Pour 200 ml water, juice or milk."
+      },
+      {
+        "ar": "قلّب جيدًا لمدة دقيقتين حتى يذوب تمامًا.",
+        "en": "Stir well for 2 minutes until fully dissolved."
+      },
+      {
+        "ar": "اشربه على معدة فارغة.",
+        "en": "Drink on an empty stomach."
+      },
+      {
+        "ar": "يمكن أيضًا إضافة المسحوق إلى الزبادي.",
+        "en": "You can also add the powder to yoghurt."
+      }
+    ]
+  }
+}

@@ -2,13 +2,20 @@
   "siteName": "Bestrade Pharma",
   "author": "Bestrade Pharma Company, El Obour, Cairo",
 
-  "_comment_baseUrl": "The domain you own. This is the ONE value that can never change once boxes are printed. Everything else is swappable.",
-  "baseUrl": "https://example.com",
-
-  "_comment_customDomain": "Leave empty. With GitHub Actions deployment, Pages ignores a CNAME file; set the custom domain in repo Settings → Pages instead.",
-  "customDomain": "",
+  "_comment_baseUrl": "The domain. Printed QR codes point at <baseUrl>/p/<code>/, so this can never change once boxes are printed.",
+  "baseUrl": "https://bestradepharma.com",
 
   "assetsPath": "../../assets",
+
+  "_comment_defaultLang": "Language a product page opens in when the reader has not picked one. Company pages are English at / and Arabic at /ar/.",
   "defaultLang": "ar",
-  "themeColor": "#083F88"
+  "themeColor": "#083F88",
+
+  "whatsapp": "201116016972",
+
+  "_comment_contactFormEndpoint": "Formspree (or similar) form URL, e.g. https://formspree.io/f/xxxxxxx. While empty, the contact page shows a WhatsApp button instead of the form.",
+  "contactFormEndpoint": "",
+
+  "_comment_gtmId": "Google Tag Manager container id, e.g. GTM-ABC1234. While empty, no tracking code is added.",
+  "gtmId": ""
 }

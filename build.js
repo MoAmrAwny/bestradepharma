@@ -1,14 +1,25 @@
 #!/usr/bin/env node
 /**
- * Builds the static leaflet site.
+ * Builds bestradepharma.com into dist/.
  *
- *   products/<code>.json  +  src/ui.json  +  src/assets/leaflet.js
- *        -> dist/p/<code>/index.html   (fully prerendered, readable with JS off)
+ *   Company pages, one file per language:
+ *     /            /ar/              home
+ *     /products/   /ar/products/
+ *     /about/      /ar/about/
+ *     /contact/    /ar/contact/
  *
- * The renderers in src/assets/leaflet.js are the single source of truth for
- * markup. We run them here under jsdom to produce the static HTML, and ship
- * the same file to the browser for language switching and interactions.
- * There is no second, hand-maintained copy of the leaflet to drift out of date.
+ *   Product pages, ONE URL per product (printed on the box as a QR code):
+ *     /p/<code>/   both languages, switched on the page; Arabic by default.
+ *                  ?lang=en|ar picks the language (used by links from the
+ *                  company pages); a plain scan behaves as it always has.
+ *
+ *   products/<code>.json decides the product page type:
+ *     "type": "leaflet" (default)  the full interactive leaflet. The renderers in
+ *                                  src/assets/leaflet.js run here under jsdom to
+ *                                  prerender it, and again in the browser.
+ *     "type": "profile"            a short profile: facts, use, how to use.
+ *
+ * Everything is static HTML. No framework; src/assets/site.js adds the motion.
  */
 
 const fs = require("fs");
@@ -21,9 +32,19 @@ const DIST = path.join(ROOT, "dist");
 
 const site = JSON.parse(read(path.join(ROOT, "site.config.json")));
 const ui = JSON.parse(read(path.join(SRC, "ui.json")));
+const S = JSON.parse(read(path.join(SRC, "site.json")));
 const template = read(path.join(SRC, "template.html"));
 const shellTpl = read(path.join(SRC, "shell.html"));
 const rendererJs = read(path.join(SRC, "assets", "leaflet.js"));
+
+const BASE = site.baseUrl.replace(/\/$/, "");
+const YEAR = new Date().getFullYear();
+const LANGS = ["en", "ar"];
+const PAGES = ["home", "products", "about", "contact"];
+const PAGE_PATH = { home: "", products: "products/", about: "about/", contact: "contact/" };
+const WHATSAPP = "https://wa.me/" + String(site.whatsapp || "").replace(/\D/g, "");
+const TEL1 = "tel:+201116016972";
+const TEL2 = "tel:+20222668630";
 
 function read(p) {
   return fs.readFileSync(p, "utf8");
@@ -52,21 +73,470 @@ function copyDir(from, to) {
   }
 }
 
+/* ---------- language helpers ---------- */
+
+const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+/** Arabic-Indic digits for numbers that stand alone (not D3, MK-7, CYP3A4). */
+function toAr(s) {
+  return String(s)
+    .replace(/(^|[^A-Za-z\-])(\d+(?:\.\d+)?)(?![A-Za-z\d])/g, (m, pre, num) =>
+      pre + num.replace(/\d/g, (d) => AR_DIGITS[d]).replace(".", "٫")
+    )
+    .replace(/ mg\b/g, " مجم");
+}
+const tx = (lang, s) => (lang === "ar" ? toAr(s) : String(s == null ? "" : s));
+/** Escaped, localised text from a {ar, en} object. */
+const L = (lang, o) => esc(tx(lang, o && o[lang] !== undefined ? o[lang] : ""));
+/** Escaped, localised text from src/site.json. */
+const T = (lang, key) => esc(tx(lang, S[lang][key]));
+const dirOf = (lang) => (lang === "ar" ? "rtl" : "ltr");
+const other = (lang) => (lang === "ar" ? "en" : "ar");
+
+function fmtInt(n, lang) {
+  const s = Math.round(n).toLocaleString("en-US");
+  return lang === "ar" ? toAr(s).replace(/,/g, "٬") : s;
+}
+const plus = (n, lang) => "+" + fmtInt(n, lang);
+
+const pageUrl = (lang, key) => (lang === "ar" ? "/ar/" : "/") + PAGE_PATH[key];
+const productUrl = (code, lang) => `/p/${code}/` + (lang ? `?lang=${lang}` : "");
+
+/* ---------- products ---------- */
+
+function imageFor(code) {
+  for (const ext of ["png", "webp", "jpg"]) {
+    if (fs.existsSync(path.join(SRC, "assets", "img", `${code}.${ext}`))) return `/assets/img/${code}.${ext}`;
+  }
+  return null;
+}
+
+function loadProducts() {
+  const files = fs
+    .readdirSync(path.join(ROOT, "products"))
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => path.join(ROOT, "products", f));
+  return files
+    .map((file) => {
+      const code = path.basename(file, ".json");
+      const json = JSON.parse(read(file));
+      const p = json.data.product;
+      return {
+        code,
+        file,
+        json,
+        type: json.type || "leaflet",
+        name: p.name,
+        category: p.cardCategory || p.category || { ar: "", en: "" },
+        summary: p.summary || { ar: "", en: "" },
+        group: p.group || "supplement",
+        order: p.order || 99,
+        color: p.color || "#083F88",
+        patients: p.patients || 0,
+        image: imageFor(code),
+      };
+    })
+    .sort((a, b) => a.order - b.order || a.code.localeCompare(b.code));
+}
+
+/* ---------- shared page parts ---------- */
+
+/** On product pages every piece of chrome is rendered once per language and
+    the one not in use is hidden by CSS (html[lang] decides). */
+const lvAttr = (lv, lang) => (lv ? ` data-lv="${lang}" lang="${lang}" dir="${dirOf(lang)}"` : "");
+
+function header(lang, current, opts) {
+  const links = PAGES.map((k) => {
+    const on = k === current || (current === "product" && k === "products");
+    const cur = k === current ? ' aria-current="page"' : "";
+    return `<a href="${pageUrl(lang, k)}"${on ? ' class="on"' : ""}${cur}>${T(lang, k)}</a>`;
+  }).join("");
+  const to = other(lang);
+  const langCtl = opts.toggle
+    ? `<button type="button" class="lang-switch" data-to="${to}" lang="${to}">${esc(S[lang].langBtn)}</button>`
+    : `<a class="lang-switch" href="${opts.altHref}" hreflang="${to}" lang="${to}">${esc(S[lang].langBtn)}</a>`;
+  return `<header class="site-header"${lvAttr(opts.lv, lang)}>
+  <a class="skip" href="#content">${T(lang, "skip")}</a>
+  <div class="container hdr">
+    <div class="hdr-start">
+      <a class="brand" href="${pageUrl(lang, "home")}">
+        <img src="/assets/logo.webp" alt="" width="44" height="46">
+        <span class="brand-txt"><span class="brand-name">${T(lang, "heroTitle")}</span><span class="brand-sub" lang="en">BTP PHARMA</span></span>
+      </a>
+      <nav class="main-nav" aria-label="${T(lang, "navLabel")}">${links}</nav>
+    </div>
+    <div class="hdr-end">
+      ${langCtl}
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav-${lang}" aria-label="${T(lang, "menu")}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <a class="btn btn-solid hide-sm" href="${pageUrl(lang, "contact")}">${T(lang, "contact")}</a>
+    </div>
+  </div>
+  <nav class="mobile-panel" id="mnav-${lang}" aria-label="${T(lang, "menu")}">${links}</nav>
+</header>`;
+}
+
+function contactBand(lang, lv) {
+  return `<section class="cband"${lvAttr(lv, lang)}>
+  <div class="container cband-in reveal">
+    <div class="cband-txt">
+      <h2>${T(lang, "contactTitle")}</h2>
+      <p>${T(lang, "address")}</p>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-white" href="${TEL1}" dir="ltr">${T(lang, "ph1")}</a>
+      <a class="btn btn-ghost" href="${TEL2}" dir="ltr">${T(lang, "ph2")}</a>
+    </div>
+  </div>
+</section>`;
+}
+
+function footer(lang, products, lv) {
+  const list = (g) =>
+    products
+      .filter((p) => p.group === g)
+      .map((p) => `<a href="${productUrl(p.code, lang)}" lang="en">${esc(p.name.en)}</a>`)
+      .join("");
+  return `<footer class="site-footer"${lvAttr(lv, lang)}>
+  <div class="container foot-grid">
+    <div class="foot-col">
+      <span class="foot-brand"><span class="foot-logo"><img src="/assets/logo.webp" alt="" width="40" height="41" loading="lazy"></span><span class="foot-name">${T(lang, "heroTitle")}</span></span>
+      <span>${T(lang, "footerAddr")}</span>
+    </div>
+    <div class="foot-col"><span class="foot-h">${T(lang, "devicesLbl")}</span>${list("device")}</div>
+    <div class="foot-col"><span class="foot-h">${T(lang, "supplementsLbl")}</span>${list("supplement")}</div>
+  </div>
+  <div class="foot-bottom"><div class="container">© ${tx(lang, String(YEAR))} ${T(lang, "heroTitle")}</div></div>
+</footer>`;
+}
+
+function whatsappButton() {
+  return `<a class="wa" href="${WHATSAPP}" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.3-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>
+</a>`;
+}
+
+/** Light band at the top of every page except home. */
+function band(lang, eyebrow, title, back) {
+  return `<section class="band">
+  <div class="container band-in">
+    ${back ? `<a class="back-link arrow-link up" href="${pageUrl(lang, "products")}">${T(lang, "back")}</a>` : ""}
+    <span class="kicker up">${eyebrow}</span>
+    <h1 class="band-title up d1">${title}</h1>
+  </div>
+</section>`;
+}
+
+function media(lang, p, size) {
+  if (p.image) {
+    return `<img class="pimg" src="${p.image}" alt="${esc(p.name.en)}"${size === "lg" ? "" : ' loading="lazy"'}>`;
+  }
+  return `<div class="ph-pack ${size}" style="--c:${esc(p.color)}"><span lang="en">${esc(p.name.en)}</span></div><span class="ph-note">${T(lang, "photoNote")}</span>`;
+}
+
+function productCard(lang, p) {
+  return `<a class="pcard lift zoom reveal" href="${productUrl(p.code, lang)}">
+  <div class="pc-media">${media(lang, p, "sm")}</div>
+  <div class="pc-body">
+    <span class="pc-cat">${L(lang, p.category)}</span>
+    <span class="pc-name" lang="en">${esc(p.name.en)}</span>
+    <p class="pc-sum">${L(lang, p.summary)}</p>
+    <span class="arrow-link">${T(lang, "details")}</span>
+  </div>
+</a>`;
+}
+
+/* ---------- company page sections ---------- */
+
+function hero(lang, products) {
+  const photo = fs.existsSync(path.join(SRC, "assets", "img", "hero-cairo.jpg"));
+  const bg = photo
+    ? `<div class="hero-bg" style="background-image:url(/assets/img/hero-cairo.jpg)"></div>`
+    : `<div class="hero-bg hero-ph"><span>${T(lang, "heroPhotoNote")}</span></div>`;
+  const fact = (num, label, delay) =>
+    `<div class="hfact pop" style="animation-delay:${delay}s"><span class="hfact-num">${num}</span><span class="hfact-lbl">${label}</span></div>`;
+  return `<section class="hero">
+  <div class="hero-media">${bg}<div class="hero-shade"></div></div>
+  <div class="container hero-card-wrap">
+    <div class="hero-card up">
+      <span class="kicker line up d1">${T(lang, "chip")}</span>
+      <h1 class="hero-title up d2">${T(lang, "heroTitle")}</h1>
+      <p class="hero-sub up d3">${T(lang, "heroSub")}</p>
+      <div class="btn-row up d4">
+        <a class="btn btn-solid btn-lg" href="${pageUrl(lang, "products")}">${T(lang, "ctaProducts")}</a>
+        <a class="btn btn-line btn-lg" href="${pageUrl(lang, "about")}">${T(lang, "ctaStory")}</a>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hfacts">
+      ${fact(tx(lang, "2012"), T(lang, "stat1"), 0.7)}
+      ${fact(tx(lang, String(products.length)), T(lang, "stat2"), 0.85)}
+      ${fact("MDT", T(lang, "stat3"), 1)}
+    </div>
+  </div>
+</section>`;
+}
+
+function impact(lang, products) {
+  const withP = products.filter((p) => p.patients > 0);
+  const total = withP.reduce((a, p) => a + p.patients, 0);
+  const max = Math.max(...withP.map((p) => p.patients));
+  const stats = withP
+    .map((p) => {
+      const w = ((p.patients / max) * 100).toFixed(1);
+      return `<a class="stat reveal" href="${productUrl(p.code, lang)}">
+      <span class="stat-name" lang="en">${esc(p.name.en)}</span>
+      <span class="stat-num" dir="ltr" data-count="${p.patients}">${plus(p.patients, lang)}</span>
+      <span class="stat-bar" aria-hidden="true"><span class="stat-fill" data-w="${w}" style="width:${w}%"></span></span>
+      <span class="stat-lbl">${T(lang, "patients")}</span>
+      <span class="arrow-link">${T(lang, "details")}</span>
+    </a>`;
+    })
+    .join("\n");
+  return `<section class="container sec" data-countup>
+  <div class="sec-head reveal">
+    <span class="kicker line">${T(lang, "impactEyebrow")}</span>
+    <span class="big-num" dir="ltr" data-count="${total}">${plus(total, lang)}</span>
+    <h2 class="h2">${T(lang, "impactTitle")}</h2>
+  </div>
+  <div class="stats">
+${stats}
+  </div>
+</section>`;
+}
+
+function grids(lang, products, withIntro) {
+  const cards = (g) => products.filter((p) => p.group === g).map((p) => productCard(lang, p)).join("\n");
+  return `<section class="container grid-sec">
+  ${withIntro ? `<p class="intro reveal">${T(lang, "productsIntro")}</p>` : ""}
+  <div class="sec-head reveal">
+    <span class="kicker line">${T(lang, "devEyebrow")}</span>
+    <h2 class="h2">${T(lang, "devTitle")}</h2>
+  </div>
+  <div class="pgrid">
+${cards("device")}
+  </div>
+</section>
+<section class="container grid-sec grid-sec-2">
+  <div class="sec-head reveal">
+    <span class="kicker line">${T(lang, "supEyebrow")}</span>
+    <h2 class="h2">${T(lang, "supTitle")}</h2>
+  </div>
+  <div class="pgrid">
+${cards("supplement")}
+  </div>
+</section>`;
+}
+
+function story(lang) {
+  const items = S[lang].timeline
+    .map(
+      (m) => `<div class="tl-item reveal"><span class="tl-dot" aria-hidden="true"></span><span class="tl-year">${esc(
+        tx(lang, m.y)
+      )}</span><span class="tl-text">${esc(tx(lang, m.t))}</span></div>`
+    )
+    .join("\n");
+  return `<section class="story">
+  <div class="container story-in">
+    <div class="story-top reveal">
+      <div class="story-txt">
+        <span class="kicker line">${T(lang, "storyEyebrow")}</span>
+        <h2 class="story-title">${T(lang, "storyTitle")}</h2>
+        <p class="story-p">${T(lang, "storyText")}</p>
+      </div>
+      <div class="mdt"><b lang="en">MDT Int’l</b><span>${T(lang, "mdtText")}</span></div>
+    </div>
+    <div class="tl reveal">
+      <span class="tl-line" aria-hidden="true"></span>
+${items}
+    </div>
+  </div>
+</section>`;
+}
+
+function qrSteps(lang) {
+  const steps = S[lang].steps
+    .map(
+      (s, i) => `<div class="step reveal"><span class="step-n" aria-hidden="true">${tx(lang, String(i + 1))}</span><h3 class="step-t">${esc(
+        tx(lang, s.t)
+      )}</h3><p class="step-d">${esc(tx(lang, s.d))}</p></div>`
+    )
+    .join("\n");
+  return `<section class="steps-band">
+  <div class="container steps-in">
+    <h2 class="h2 reveal">${T(lang, "qrTitle")}</h2>
+    <div class="steps">
+${steps}
+    </div>
+  </div>
+</section>`;
+}
+
+function contactSection(lang) {
+  const endpoint = site.contactFormEndpoint;
+  const form = endpoint
+    ? `<form class="c-form reveal" action="${esc(endpoint)}" method="POST">
+    <h2 class="c-h">${T(lang, "formTitle")}</h2>
+    <div class="f2">
+      <div class="field"><label for="c-name">${T(lang, "fName")}</label><input id="c-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="c-phone">${T(lang, "fPhone")}</label><input id="c-phone" name="phone" type="tel" dir="ltr" autocomplete="tel"></div>
+    </div>
+    <div class="field"><label for="c-email">${T(lang, "fEmail")}</label><input id="c-email" name="email" type="email" dir="ltr" autocomplete="email"></div>
+    <div class="field"><label for="c-msg">${T(lang, "fMsg")}</label><textarea id="c-msg" name="message" rows="5" required></textarea></div>
+    <input type="hidden" name="language" value="${lang}">
+    <button type="submit" class="btn btn-solid btn-lg">${T(lang, "fSend")}</button>
+  </form>`
+    : `<div class="c-form reveal">
+    <h2 class="c-h">${T(lang, "formTitle")}</h2>
+    <p class="c-pending">${T(lang, "formPending")}</p>
+    <a class="btn btn-solid btn-lg" href="${WHATSAPP}" target="_blank" rel="noopener">${T(lang, "whatsappCta")}</a>
+  </div>`;
+  return `<section class="container contact">
+  <div class="c-side">
+    <p class="c-intro reveal">${T(lang, "contactPageSub")}</p>
+    <div class="c-card reveal"><span class="c-lbl">${T(lang, "phoneLbl")}</span><a class="c-val" href="${TEL1}" dir="ltr">${T(
+    lang,
+    "ph1"
+  )}</a><a class="c-val2" href="${TEL2}" dir="ltr">${T(lang, "ph2")}</a></div>
+    <a class="c-card lift reveal" href="${WHATSAPP}" target="_blank" rel="noopener"><span class="c-lbl">${T(
+    lang,
+    "whatsapp"
+  )}</span><span class="c-val" dir="ltr">${T(lang, "ph1")}</span></a>
+    <div class="c-card reveal"><span class="c-lbl">${T(lang, "addressLbl")}</span><span class="c-addr">${T(lang, "address")}</span></div>
+  </div>
+  ${form}
+</section>`;
+}
+
+/* ---------- page assembly ---------- */
+
+const GTM = (site.gtmId || "").trim();
+const gtmHead = GTM
+  ? `<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${esc(
+      GTM
+    )}');</script>`
+  : "";
+const gtmBody = GTM
+  ? `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${esc(
+      GTM
+    )}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
+  : "";
+
+function writePage(rel, html) {
+  const out = path.join(DIST, rel);
+  fs.mkdirSync(path.dirname(out), { recursive: true });
+  fs.writeFileSync(out, html);
+  return Buffer.byteLength(html);
+}
+
+function page(o) {
+  return fill(template, {
+    LANG: o.lang,
+    DIR: dirOf(o.lang),
+    HEAD_SCRIPT: o.headScript || `<script>document.documentElement.className+=" js"</script>`,
+    THEME_COLOR: site.themeColor,
+    TITLE: o.title,
+    DESCRIPTION: o.description,
+    AUTHOR: esc(site.author),
+    CANONICAL: o.canonical,
+    ALTERNATES: o.alternates || "",
+    SITE_NAME: esc(site.siteName),
+    OG_IMAGE: `${BASE}/assets/logo.webp`,
+    OG_LOCALE: o.lang === "ar" ? "ar_EG" : "en_US",
+    OG_LOCALE_ALT: o.lang === "ar" ? "en_US" : "ar_EG",
+    GTM_HEAD: gtmHead,
+    GTM_BODY: gtmBody,
+    STYLES: (o.styles || ["site.css"]).map((s) => `<link rel="stylesheet" href="/assets/${s}">`).join("\n"),
+    BODY_ATTRS: o.bodyAttrs || "",
+    BODY: o.body,
+    SCRIPTS: (o.scripts || "") + `\n<script src="/assets/site.js" defer></script>`,
+  });
+}
+
+function companyPage(lang, key, products) {
+  const sections = {
+    home: () => [hero(lang, products), impact(lang, products), grids(lang, products, false), story(lang), qrSteps(lang), contactBand(lang)],
+    products: () => [band(lang, T(lang, "devEyebrow"), T(lang, "allProducts")), grids(lang, products, true), contactBand(lang)],
+    about: () => [band(lang, T(lang, "storyEyebrow"), T(lang, "aboutTitle")), impact(lang, products), story(lang)],
+    contact: () => [band(lang, T(lang, "contactPageSub"), T(lang, "contactPageTitle")), contactSection(lang)],
+  }[key]();
+  const name = T(lang, "heroTitle");
+  const titles = {
+    home: `${name} · ${T(lang, "chip")}`,
+    products: `${T(lang, "allProducts")} — ${name}`,
+    about: `${T(lang, "aboutTitle")}`,
+    contact: `${T(lang, "contactPageTitle")} — ${name}`,
+  };
+  const desc = { home: "heroSub", products: "productsIntro", about: "storyText", contact: "contactPageSub" }[key];
+  const alt = (l) => `${BASE}${pageUrl(l, key)}`;
+  const alternates = [
+    `<link rel="alternate" hreflang="en" href="${alt("en")}">`,
+    `<link rel="alternate" hreflang="ar" href="${alt("ar")}">`,
+    `<link rel="alternate" hreflang="x-default" href="${alt("en")}">`,
+  ].join("\n");
+  const body = [
+    header(lang, key, { altHref: pageUrl(other(lang), key) }),
+    `<main id="content" tabindex="-1">\n${sections.join("\n")}\n</main>`,
+    footer(lang, products),
+    whatsappButton(),
+  ].join("\n");
+  const html = page({
+    lang,
+    title: titles[key],
+    description: T(lang, desc),
+    canonical: alt(lang),
+    alternates,
+    body,
+  });
+  return writePage(path.join(pageUrl(lang, key).slice(1), "index.html"), html);
+}
+
+/** Inline, before the stylesheets: sets the language the reader asked for so
+    the page does not flash the other one first. */
+function productHeadScript(code) {
+  return `<script>(function(d,c){d.className+=" js";var l;try{var m=/[?&]lang=(ar|en)(?:&|$)/.exec(location.search);l=m?m[1]:localStorage.getItem(c+".lang")}catch(e){}if(l==="ar"||l==="en"){d.lang=l;d.dir=l==="ar"?"rtl":"ltr"}})(document.documentElement,${JSON.stringify(
+    code
+  )})</script>`;
+}
+
+/** Header (×2) + content + "on the box" + contact band (×2) + footer (×2). */
+function productChrome(p, products, content) {
+  const qr = (lang) => `<section class="container qr-sec"${lvAttr(true, lang)}>
+  <div class="qr-card reveal">
+    <span class="qr-icon" aria-hidden="true"><svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 17h3v4h-3z"/></svg></span>
+    <div class="qr-txt">
+      <h2 class="c-h">${T(lang, "qrHead")}</h2>
+      <p>${T(lang, "qrText")}</p>
+      <span class="qr-url" dir="ltr" lang="en">${esc(BASE.replace(/^https?:\/\//, ""))}/p/${esc(p.code)}/</span>
+    </div>
+  </div>
+</section>`;
+  return [
+    ...LANGS.map((l) => header(l, "product", { toggle: true, lv: true })),
+    content,
+    ...LANGS.map(qr),
+    ...LANGS.map((l) => contactBand(l, true)),
+    ...LANGS.map((l) => footer(l, products, true)),
+    whatsappButton(),
+  ].join("\n");
+}
+
+/* ----- leaflet product (the full interactive leaflet) ----- */
+
 /**
  * Runs the real renderers against a blank shell and returns the finished body.
- * `lang` forces the language, bypassing the localStorage lookup the browser uses.
+ * `lang` forces the language, bypassing the lookup the browser uses.
  */
 function prerender(payload, lang, shellHtml, pathId) {
-  const url = site.baseUrl.replace(/\/$/, "") + "/" + (pathId ? "#" + pathId : "");
-  const dom = new JSDOM(
-    `<!DOCTYPE html><html><head></head><body>${shellHtml}</body></html>`,
-    { url, pretendToBeVisual: true, runScripts: "outside-only" }
-  );
+  const url = BASE + "/" + (pathId ? "#" + pathId : "");
+  const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body>${shellHtml}</body></html>`, {
+    url,
+    pretendToBeVisual: true,
+    runScripts: "outside-only",
+  });
   const win = dom.window;
   win.scrollTo = () => {}; // jsdom has no layout; the renderer calls this on navigation
   win.__PRERENDER_LANG = lang;
   win.PAYLOAD = payload;
-  // localStorage is unavailable under some jsdom configs; the renderer guards it.
   try {
     win.eval(rendererJs);
   } catch (err) {
@@ -82,22 +552,17 @@ function prerender(payload, lang, shellHtml, pathId) {
 
 /**
  * Picks the path whose sectionOrder covers the most sections, so one render
- * carries the whole leaflet. Paths differ in section ORDER, not content; if a
- * future product adds a path with sections no other path has, this warns.
+ * carries the whole leaflet. Paths differ in section ORDER, not content.
  */
 function pathCoveringAllSections(paths) {
   if (!paths.length) return null;
   const all = new Set();
   paths.forEach((p) => (p.sectionOrder || []).forEach((s) => all.add(s)));
-  const best = paths
-    .slice()
-    .sort((a, b) => (b.sectionOrder || []).length - (a.sectionOrder || []).length)[0];
+  const best = paths.slice().sort((a, b) => (b.sectionOrder || []).length - (a.sectionOrder || []).length)[0];
   const covered = new Set(best.sectionOrder || []);
   const missing = [...all].filter((s) => !covered.has(s));
   if (missing.length) {
-    console.warn(
-      `  ! no single path covers every section; missing from fallback: ${missing.join(", ")}`
-    );
+    console.warn(`  ! no single path covers every section; missing from fallback: ${missing.join(", ")}`);
   }
   return best.id;
 }
@@ -108,233 +573,152 @@ function sliceMain(body) {
   return m ? m[1].trim() : "";
 }
 
-function buildProduct(file) {
-  const code = path.basename(file, ".json");
-  const product = JSON.parse(read(file));
-  const payload = {
-    code,
-    data: product.data,
-    plates: product.plates,
-    flags: product.flags || {},
-    ui,
-  };
-
-  const assets = site.assetsPath;
-  const shellHtml = fill(shellTpl, { ASSETS: assets, SITE_NAME: esc(site.siteName) });
+function buildLeaflet(p, products) {
+  const product = p.json;
+  const payload = { code: p.code, data: product.data, plates: product.plates, flags: product.flags || {}, ui };
+  const shellHtml = fill(shellTpl, {
+    ASSETS: site.assetsPath,
+    SITE_NAME: esc(site.siteName),
+    BACK_AR: T("ar", "back"),
+    BACK_EN: T("en", "back"),
+    BACK_AR_HREF: pageUrl("ar", "products"),
+    BACK_EN_HREF: pageUrl("en", "products"),
+  });
 
   const primary = site.defaultLang;
-  const secondary = primary === "ar" ? "en" : "ar";
+  const secondary = other(primary);
   const rendered = prerender(payload, primary, shellHtml);
 
   /* The landing view is only the path chooser, and its buttons need JS. So a
      reader with scripting off would otherwise get no leaflet at all — not
-     acceptable for safety information. We render every path in every language
-     from the same renderers and put them in <noscript>. Generated, never
-     hand-maintained, so it cannot drift from the data. */
-  const paths = product.data.paths || [];
-  const fallbackPath = pathCoveringAllSections(paths);
+     acceptable for safety information. Every path in every language goes into
+     <noscript>, generated from the same renderers so it cannot drift. */
+  const fallbackPath = pathCoveringAllSections(product.data.paths || []);
   const fallback = [];
   for (const lang of [primary, secondary]) {
-    const r = prerender(payload, lang, shellHtml, fallbackPath);
-    const main = sliceMain(r.body);
-    if (main) {
-      fallback.push(
-        `<section class="ns" lang="${lang}" dir="${lang === "ar" ? "rtl" : "ltr"}">${main}</section>`
-      );
-    }
+    const main = sliceMain(prerender(payload, lang, shellHtml, fallbackPath).body);
+    if (main) fallback.push(`<section class="ns" lang="${lang}" dir="${dirOf(lang)}">${main}</section>`);
   }
 
-  const canonical = `${site.baseUrl.replace(/\/$/, "")}/p/${code}/`;
-  const pick = (o) => (o && o[primary] !== undefined ? o[primary] : "");
+  const content = `<div class="leaflet" id="content" tabindex="-1">
+${rendered.body}
+<noscript><div class="container leaflet-body">
+${fallback.join("\n")}
+</div></noscript>
+</div>`;
 
-  const html = fill(template, {
-    LANG: rendered.lang || primary,
-    DIR: rendered.dir || (primary === "ar" ? "rtl" : "ltr"),
-    THEME_COLOR: site.themeColor,
-    TITLE: esc(rendered.title || pick(ui.pageTitle)),
-    DESCRIPTION: esc(pick(ui.metaDesc)),
-    AUTHOR: esc(site.author),
-    SITE_NAME: esc(site.siteName),
-    CANONICAL: canonical,
-    OG_IMAGE: `${site.baseUrl.replace(/\/$/, "")}${assets.replace(/^\.\.\/\.\./, "")}/logo.webp`,
-    OG_LOCALE: primary === "ar" ? "ar_EG" : "en_US",
-    OG_LOCALE_ALT: secondary === "ar" ? "ar_EG" : "en_US",
-    ASSETS: assets,
-    BODY: rendered.body + `\n<noscript>\n${fallback.join("\n")}\n</noscript>`,
-    PAYLOAD: JSON.stringify(payload).replace(/</g, "\\u003c"),
+  const html = page({
+    lang: rendered.lang || primary,
+    headScript: productHeadScript(p.code),
+    title: esc(rendered.title || ui.pageTitle[primary]),
+    description: esc(ui.metaDesc ? ui.metaDesc[primary] : ""),
+    canonical: `${BASE}/p/${p.code}/`,
+    styles: ["leaflet.css", "site.css"],
+    bodyAttrs: ` data-code="${esc(p.code)}"`,
+    body: productChrome(p, products, content),
+    scripts: `<script type="application/json" id="payload">${JSON.stringify(payload).replace(/</g, "\\u003c")}</script>
+<script src="${site.assetsPath}/leaflet.js" defer></script>`,
   });
-
-  const outDir = path.join(DIST, "p", code);
-  fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(path.join(outDir, "index.html"), html);
-  return { code, bytes: Buffer.byteLength(html), canonical, product: product.data.product || {} };
+  return writePage(path.join("p", p.code, "index.html"), html);
 }
 
-/* Text for the product directory at the site root. Kept here rather than in
-   ui.json because ui.json is the leaflet's vocabulary, not the site's. */
-const DIR_TEXT = {
-  title: { ar: "نشرات منتجاتنا", en: "Product leaflets" },
-  intro: {
-    ar: "اختر المنتج لقراءة نشرته كاملة: الجرعة، والمكوّنات، والتحذيرات.",
-    en: "Choose a product to read its full leaflet: dose, ingredients and warnings.",
-  },
-  open: { ar: "افتح النشرة", en: "Open leaflet" },
-  search: { ar: "ابحث عن منتج", en: "Search products" },
-  none: { ar: "لا توجد منتجات مطابقة.", en: "No matching products." },
-  foot: {
-    ar: "تحمل كل علبة رمز QR يفتح نشرة المنتج نفسه مباشرة.",
-    en: "Every pack carries a QR code that opens its own leaflet directly.",
-  },
-};
+/* ----- profile product (facts, use, how to use) ----- */
 
-/* Only show a search box once the list is long enough to need one. */
-const SEARCH_THRESHOLD = 6;
-
-function buildIndex(built) {
-  const primary = site.defaultLang;
-  const t = (o, lang) => (o && o[lang] !== undefined ? o[lang] : "");
-  // Every visible string carries both languages; the inline script swaps them.
-  const bi = (o, tag = "span", attrs = "") =>
-    `<${tag}${attrs} data-ar="${esc(t(o, "ar"))}" data-en="${esc(t(o, "en"))}">${esc(
-      t(o, primary)
-    )}</${tag}>`;
-
-  const items = built
-    .slice()
-    .sort((a, b) => t(a.product.name, "en").localeCompare(t(b.product.name, "en")))
-    .map((b) => {
-      const p = b.product;
-      const name = p.name || { ar: b.code, en: b.code };
-      const initial = esc((t(name, "en") || b.code).charAt(0).toUpperCase());
-      const media = p.cardImage
-        ? `<img src="assets/${esc(p.cardImage)}" alt="" loading="lazy">`
-        : `<span class="pmono" aria-hidden="true">${initial}</span>`;
-      const reg = p.registration && p.registration.number
-        ? `<span class="preg" dir="ltr">${esc(p.registration.number)}</span>`
-        : "";
-      const search = esc(
-        [t(name, "ar"), t(name, "en"), t(p.category, "ar"), t(p.category, "en")].join(" ").toLowerCase()
-      );
-      return `    <li><a class="pcard" href="p/${esc(b.code)}/" data-search="${search}">
-      <span class="pmedia">${media}</span>
-      <span class="pbody">
-        ${bi(name, "span", ' class="pname"')}
-        ${p.category ? bi(p.category, "span", ' class="pcat"') : ""}
-        ${reg}
-      </span>
-      <span class="pgo">${bi(DIR_TEXT.open)}<span class="arw" aria-hidden="true"></span></span>
-    </a></li>`;
-    })
+function profileContent(lang, p) {
+  const d = p.json.data;
+  const facts = (d.facts || [])
+    .map((f) => `<div class="frow"><dt>${L(lang, f.label)}</dt><dd>${L(lang, f.value)}</dd></div>`)
+    .join("");
+  const uses = (d.uses || []).map((u) => `<div class="use reveal lift" style="--c:${esc(p.color)}">${L(lang, u)}</div>`).join("\n");
+  const steps = (d.steps || [])
+    .map(
+      (s, i) => `<li class="hstep reveal"><span class="hstep-n" aria-hidden="true">${tx(lang, String(i + 1))}</span><span>${L(lang, s)}</span></li>`
+    )
     .join("\n");
-
-  const searchBox =
-    built.length > SEARCH_THRESHOLD
-      ? `<label class="psearch"><span class="vh">${bi(DIR_TEXT.search)}</span>
-    <input type="search" id="q" autocomplete="off" data-ph-ar="${esc(DIR_TEXT.search.ar)}" data-ph-en="${esc(
-          DIR_TEXT.search.en
-        )}" placeholder="${esc(t(DIR_TEXT.search, primary))}"></label>
-  ${bi(DIR_TEXT.none, "p", ' class="sub pnone" id="none" hidden')}`
-      : "";
-
-  const base = site.baseUrl.replace(/\/$/, "");
-  const html = `<!DOCTYPE html>
-<html lang="${primary}" dir="${primary === "ar" ? "rtl" : "ltr"}">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="${esc(site.themeColor)}">
-<title>${esc(site.siteName)} — ${esc(t(DIR_TEXT.title, primary))}</title>
-<meta name="description" content="${esc(t(DIR_TEXT.intro, primary))}">
-<link rel="canonical" href="${esc(base)}/">
-<link rel="icon" href="assets/logo.webp" type="image/webp">
-<link rel="stylesheet" href="assets/leaflet.css">
-</head>
-<body class="directory">
-<div class="wrap">
-  <div class="masthead">
-    <img src="assets/logo.webp" alt="${esc(site.siteName)}" width="27" height="28">
-    <span class="mark">${esc(site.siteName)}</span>
+  return `<div class="lv-content" data-lv="${lang}" lang="${lang}" dir="${dirOf(lang)}">
+${band(lang, L(lang, p.category), `<span lang="en">${esc(p.name.en)}</span>`, true)}
+<section class="container prod">
+  <div class="prod-media reveal">${media(lang, p, "lg")}</div>
+  <div class="prod-info reveal">
+    <p class="prod-sum">${L(lang, p.summary)}</p>
+    ${p.patients > 0 ? `<div class="pill"><b dir="ltr">${plus(p.patients, lang)}</b><span>${T(lang, "impactTitle")}</span></div>` : ""}
+    ${facts ? `<div class="fcard"><h2>${T(lang, "factsTitle")}</h2><dl>${facts}</dl></div>` : ""}
+    <div class="btn-row"><a class="btn btn-line btn-lg" href="${pageUrl(lang, "contact")}">${T(lang, "contact")}</a></div>
   </div>
-  <div class="bar">
-    <span></span>
-    <span class="lang">
-      <button type="button" data-lang="ar" aria-pressed="${primary === "ar"}">العربية</button>
-      <button type="button" data-lang="en" aria-pressed="${primary === "en"}">English</button>
-    </span>
-  </div>
-  <header class="hero">
-    ${bi(DIR_TEXT.title, "h1")}
-    ${bi(DIR_TEXT.intro, "p")}
-  </header>
-  ${searchBox}
-  <ul class="plist" id="plist">
-${items}
-  </ul>
-  ${bi(DIR_TEXT.foot, "p", ' class="foot"')}
-</div>
-<script>
-(function () {
-  var KEY = "site.lang", root = document.documentElement;
-  function set(l) {
-    root.lang = l; root.dir = l === "ar" ? "rtl" : "ltr";
-    document.querySelectorAll("[data-" + l + "]").forEach(function (e) { e.textContent = e.getAttribute("data-" + l); });
-    document.querySelectorAll("[data-ph-" + l + "]").forEach(function (e) { e.placeholder = e.getAttribute("data-ph-" + l); });
-    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === l); });
-    document.title = ${JSON.stringify(site.siteName)} + " — " + document.querySelector("h1").textContent;
-    try { localStorage.setItem(KEY, l); } catch (e) {}
-  }
-  var saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
-  if (saved === "ar" || saved === "en") set(saved);
-  document.querySelectorAll(".lang button").forEach(function (b) {
-    b.addEventListener("click", function () { set(b.getAttribute("data-lang")); });
-  });
-  var q = document.getElementById("q");
-  if (q) q.addEventListener("input", function () {
-    var v = q.value.trim().toLowerCase(), shown = 0;
-    document.querySelectorAll("#plist li").forEach(function (li) {
-      var hit = !v || li.firstElementChild.getAttribute("data-search").indexOf(v) !== -1;
-      li.hidden = !hit; if (hit) shown++;
-    });
-    document.getElementById("none").hidden = shown > 0;
-  });
-})();
-</script>
-</body>
-</html>`;
-  fs.writeFileSync(path.join(DIST, "index.html"), html);
+</section>
+${d.product.sourceNote ? `<div class="container"><p class="note">${T(lang, "sourceNote")}</p></div>` : ""}
+${uses ? `<section class="container sub-sec"><h2 class="h3x reveal">${T(lang, "usesTitle")}</h2><div class="uses">\n${uses}\n</div></section>` : ""}
+${steps ? `<section class="container sub-sec"><h2 class="h3x reveal">${T(lang, "stepsTitle")}</h2><ol class="hsteps">\n${steps}\n</ol></section>` : ""}
+</div>`;
 }
+
+function buildProfile(p, products) {
+  const primary = site.defaultLang;
+  const title = (l) => `${p.name.en} — ${tx(l, S[l].heroTitle)}`;
+  const content = `<main id="content" tabindex="-1">
+${LANGS.map((l) => profileContent(l, p)).join("\n")}
+</main>`;
+  const html = page({
+    lang: primary,
+    headScript: productHeadScript(p.code),
+    title: esc(title(primary)),
+    description: L(primary, p.summary),
+    canonical: `${BASE}/p/${p.code}/`,
+    bodyAttrs: ` data-code="${esc(p.code)}" data-title-ar="${esc(title("ar"))}" data-title-en="${esc(title("en"))}"`,
+    body: productChrome(p, products, content),
+  });
+  return writePage(path.join("p", p.code, "index.html"), html);
+}
+
+/* ----- 404 ----- */
+
+function notFound(products) {
+  const lang = "en";
+  const body = [
+    header(lang, "", { altHref: pageUrl("ar", "home") }),
+    `<main id="content" tabindex="-1">
+${band(lang, `<span lang="ar">${T("ar", "notFoundTitle")}</span>`, T(lang, "notFoundTitle"))}
+<section class="container nf">
+  <p class="intro">${T(lang, "notFoundText")}</p>
+  <div class="btn-row"><a class="btn btn-solid btn-lg" href="/">${T(lang, "home")}</a><a class="btn btn-line btn-lg" href="/products/">${T(lang, "allProducts")}</a><a class="btn btn-line btn-lg" href="/ar/" lang="ar">${T("ar", "home")}</a></div>
+</section>
+</main>`,
+    footer(lang, products),
+  ].join("\n");
+  return writePage(
+    "404.html",
+    page({ lang, title: `${T(lang, "notFoundTitle")} — ${T(lang, "heroTitle")}`, description: "", canonical: `${BASE}/`, body })
+  );
+}
+
+/* ---------- main ---------- */
 
 function main() {
   fs.rmSync(DIST, { recursive: true, force: true });
   fs.mkdirSync(DIST, { recursive: true });
-
   copyDir(path.join(SRC, "assets"), path.join(DIST, "assets"));
 
-  const files = fs
-    .readdirSync(path.join(ROOT, "products"))
-    .filter((f) => f.endsWith(".json"))
-    .map((f) => path.join(ROOT, "products", f));
-
-  if (!files.length) {
+  const products = loadProducts();
+  if (!products.length) {
     console.error("No products found in products/");
     process.exit(1);
   }
 
-  const built = files.map(buildProduct);
-  buildIndex(built);
-
-  // Tells GitHub Pages not to run the output through Jekyll.
-  fs.writeFileSync(path.join(DIST, ".nojekyll"), "");
-  if (site.customDomain) {
-    fs.writeFileSync(path.join(DIST, "CNAME"), site.customDomain + "\n");
+  const report = [];
+  for (const p of products) {
+    const bytes = p.type === "profile" ? buildProfile(p, products) : buildLeaflet(p, products);
+    report.push(`  /p/${p.code}/  ${p.type.padEnd(7)} ${(bytes / 1024).toFixed(0)} KB${p.image ? "" : "  (no pack photo yet)"}`);
   }
-
-  const sharedBytes = dirSize(path.join(DIST, "assets"));
-  console.log(`Built ${built.length} product page(s) -> dist/`);
-  for (const b of built) {
-    console.log(`  /p/${b.code}/  ${(b.bytes / 1024).toFixed(0)} KB`);
+  let pages = 0;
+  for (const lang of LANGS) for (const key of PAGES) {
+    companyPage(lang, key, products);
+    pages++;
   }
-  console.log(`  shared assets (cached across all products): ${(sharedBytes / 1024).toFixed(0)} KB`);
+  notFound(products);
+
+  console.log(`Built ${pages} company page(s) and ${products.length} product page(s) -> dist/`);
+  report.forEach((r) => console.log(r));
+  console.log(`  shared assets: ${(dirSize(path.join(DIST, "assets")) / 1024).toFixed(0)} KB`);
 }
 
 function dirSize(dir) {

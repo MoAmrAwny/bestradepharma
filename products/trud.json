@@ -1,0 +1,73 @@
+{
+  "type": "profile",
+  "data": {
+    "product": {
+      "name": {
+        "ar": "TRUD",
+        "en": "TRUD"
+      },
+      "group": "device",
+      "order": 3,
+      "color": "#0E7C9A",
+      "patients": 3000,
+      "sourceNote": true,
+      "category": {
+        "ar": "القولون",
+        "en": "Colon"
+      },
+      "summary": {
+        "ar": "أول حقنة شرجية بحمض الهيالورونيك، لالتهاب القولون التقرّحي البعيد الخفيف إلى المتوسط.",
+        "en": "The first hyaluronic acid enema, for mild to moderate distal ulcerative colitis."
+      }
+    },
+    "facts": [
+      {
+        "label": {
+          "ar": "العبوة",
+          "en": "Pack"
+        },
+        "value": {
+          "ar": "7 عبوات حقنة شرجية",
+          "en": "7 enema bottles"
+        }
+      },
+      {
+        "label": {
+          "ar": "المحتوى",
+          "en": "Contents"
+        },
+        "value": {
+          "ar": "نوعان من هيالورونات الصوديوم (وزن جزيئي منخفض ومرتفع) ومادة لاصقة طبيعية",
+          "en": "Low and high molecular weight sodium hyaluronate, with a natural muco-adhesive agent"
+        }
+      },
+      {
+        "label": {
+          "ar": "المدة",
+          "en": "Course"
+        },
+        "value": {
+          "ar": "عبوة واحدة يوميًا عند النوم لمدة 28 يومًا",
+          "en": "One bottle daily at bedtime for 28 days"
+        }
+      },
+      {
+        "label": {
+          "ar": "الاستخدام",
+          "en": "Route"
+        },
+        "value": {
+          "ar": "عن طريق الشرج فقط",
+          "en": "Rectal use only"
+        }
+      }
+    ],
+    "uses": [
+      {
+        "ar": "لدعم الغشاء المخاطي للأمعاء لدى مرضى التهاب القولون التقرّحي البعيد الخفيف إلى المتوسط.",
+        "en": "To supplement the intestinal mucosa of patients with mild to moderate distal ulcerative colitis."
+      }
+    ],
+    "steps": []
+  }
+}
