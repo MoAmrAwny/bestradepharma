@@ -135,6 +135,20 @@ In `site.config.json`:
 
 `dist/404.html` is served for unknown URLs.
 
+### GitHub Pages (preview)
+
+`.github/workflows/pages.yml` also deploys every push to `main` to
+https://moamrawny.github.io/bestradepharma/. That address lives in a subfolder,
+so the workflow builds with `BASE_PATH=/bestradepharma`, which prefixes every
+site link. To try the same build locally:
+
+```bash
+BASE_PATH=/bestradepharma node build.js
+```
+
+Never print a QR code that points at github.io. Printed codes use
+`baseUrl` only.
+
 ## How the leaflet prerendering works
 
 The renderers in `src/assets/leaflet.js` run twice: once at build time under
