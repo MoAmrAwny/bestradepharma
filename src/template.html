@@ -3,11 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{{HEAD_SCRIPT}}
 <meta name="theme-color" content="{{THEME_COLOR}}">
 <title>{{TITLE}}</title>
 <meta name="description" content="{{DESCRIPTION}}">
 <meta name="author" content="{{AUTHOR}}">
 <link rel="canonical" href="{{CANONICAL}}">
+{{ALTERNATES}}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{SITE_NAME}}">
 <meta property="og:title" content="{{TITLE}}">
@@ -19,13 +21,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{TITLE}}">
 <meta name="twitter:description" content="{{DESCRIPTION}}">
-<link rel="icon" href="{{ASSETS}}/logo.webp" type="image/webp">
-<link rel="preconnect" href="{{ASSETS}}">
-<link rel="stylesheet" href="{{ASSETS}}/leaflet.css">
+<link rel="icon" href="/assets/logo.webp" type="image/webp">
+{{GTM_HEAD}}
+{{STYLES}}
 </head>
-<body>
+<body{{BODY_ATTRS}}>
+{{GTM_BODY}}
 {{BODY}}
-<script type="application/json" id="payload">{{PAYLOAD}}</script>
-<script src="{{ASSETS}}/leaflet.js" defer></script>
+{{SCRIPTS}}
 </body>
 </html>

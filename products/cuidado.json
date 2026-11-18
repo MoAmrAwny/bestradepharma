@@ -1,0 +1,78 @@
+{
+  "type": "profile",
+  "data": {
+    "product": {
+      "name": {
+        "ar": "Cuidado",
+        "en": "Cuidado"
+      },
+      "group": "supplement",
+      "order": 5,
+      "color": "#C2413A",
+      "patients": 0,
+      "sourceNote": true,
+      "category": {
+        "ar": "مكمّل غذائي · أقراص",
+        "en": "Food supplement · tablets"
+      },
+      "summary": {
+        "ar": "فيتامين د3 4000 وحدة دولية مع فيتامين ك2 100 ميكروجرام، بطعم الفراولة.",
+        "en": "Vitamin D3 4000 IU with vitamin K2 100 mcg, strawberry flavoured."
+      }
+    },
+    "facts": [
+      {
+        "label": {
+          "ar": "فيتامين د3",
+          "en": "Vitamin D3"
+        },
+        "value": {
+          "ar": "4000 وحدة دولية (كوليكالسيفيرول)",
+          "en": "4000 IU (cholecalciferol)"
+        }
+      },
+      {
+        "label": {
+          "ar": "فيتامين ك2",
+          "en": "Vitamin K2"
+        },
+        "value": {
+          "ar": "100 ميكروجرام (MK-7)",
+          "en": "100 mcg (MK-7)"
+        }
+      },
+      {
+        "label": {
+          "ar": "الطعم",
+          "en": "Flavour"
+        },
+        "value": {
+          "ar": "فراولة",
+          "en": "Strawberry"
+        }
+      },
+      {
+        "label": {
+          "ar": "الجرعة",
+          "en": "Dose"
+        },
+        "value": {
+          "ar": "قرص واحد يوميًا بعد الإفطار أو الغداء",
+          "en": "One tablet daily after breakfast or lunch"
+        }
+      },
+      {
+        "label": {
+          "ar": "التركيبة",
+          "en": "Formula"
+        },
+        "value": {
+          "ar": "إسبانية",
+          "en": "Spanish"
+        }
+      }
+    ],
+    "uses": [],
+    "steps": []
+  }
+}

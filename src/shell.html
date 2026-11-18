@@ -1,22 +1,17 @@
-<div class="wrap">
-  <div class="masthead">
-    <img src="{{ASSETS}}/logo.webp" alt="{{SITE_NAME}}" width="27" height="28">
-    <span class="mark">{{SITE_NAME}}</span>
+<section class="band">
+  <div class="container band-in">
+    <a class="back-link arrow-link up" data-lv="ar" lang="ar" dir="rtl" href="{{BACK_AR_HREF}}">{{BACK_AR}}</a>
+    <a class="back-link arrow-link up" data-lv="en" lang="en" dir="ltr" href="{{BACK_EN_HREF}}">{{BACK_EN}}</a>
+    <span class="kicker up" id="reg"></span>
+    <h1 class="band-title up d1" id="title"></h1>
+    <p class="band-sub up d2" id="tagline"></p>
   </div>
+</section>
 
+<div class="container leaflet-body">
   <div class="bar">
-    <span class="sub" id="reg"></span>
     <button class="topback" type="button" id="topback"><span class="arw" id="topbackarrow"></span><span id="topbacktext"></span></button>
-    <span class="lang">
-      <button type="button" data-lang="ar" aria-pressed="true">العربية</button>
-      <button type="button" data-lang="en" aria-pressed="false">English</button>
-    </span>
   </div>
-
-  <header class="hero">
-    <h1 id="title"></h1>
-    <p id="tagline"></p>
-  </header>
 
   <h2 id="chooseDoor"></h2>
   <p class="sub" id="doorHint"></p>

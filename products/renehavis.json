@@ -1,0 +1,77 @@
+{
+  "type": "profile",
+  "data": {
+    "product": {
+      "name": {
+        "ar": "RenehaVis",
+        "en": "RenehaVis"
+      },
+      "group": "device",
+      "order": 1,
+      "color": "#0B56B5",
+      "patients": 21000,
+      "sourceNote": true,
+      "category": {
+        "ar": "الركبة والفخذ",
+        "en": "Knee & hip"
+      },
+      "summary": {
+        "ar": "محلولان من حمض الهيالورونيك في حقنة واحدة مزدوجة الحجرة، لتخفيف ألم وتيبّس مفصلي الركبة والفخذ.",
+        "en": "Two hyaluronic acid solutions in one dual-chamber syringe, for pain and stiffness of the knee and hip joints."
+      }
+    },
+    "facts": [
+      {
+        "label": {
+          "ar": "الشكل",
+          "en": "Form"
+        },
+        "value": {
+          "ar": "حقنة زجاجية جاهزة مزدوجة الحجرة",
+          "en": "Pre-filled dual-chamber glass syringe"
+        }
+      },
+      {
+        "label": {
+          "ar": "الحجرة 1",
+          "en": "Chamber 1"
+        },
+        "value": {
+          "ar": "0.7 مل، هيالورونات الصوديوم 2.2٪ (وزن جزيئي منخفض)",
+          "en": "0.7 ml, 2.2% sodium hyaluronate (low molecular weight)"
+        }
+      },
+      {
+        "label": {
+          "ar": "الحجرة 2",
+          "en": "Chamber 2"
+        },
+        "value": {
+          "ar": "0.7 مل، هيالورونات الصوديوم 1.0٪ (وزن جزيئي مرتفع)",
+          "en": "0.7 ml, 1.0% sodium hyaluronate (high molecular weight)"
+        }
+      },
+      {
+        "label": {
+          "ar": "المنشأ",
+          "en": "Origin"
+        },
+        "value": {
+          "ar": "MDT، سويسرا",
+          "en": "MDT Int’l, Switzerland"
+        }
+      }
+    ],
+    "uses": [
+      {
+        "ar": "لتخفيف ألم وتيبّس مفصلي الركبة والفخذ لدى المرضى الذين يعانون من تغيّرات تنكّسية في المفصل.",
+        "en": "For the relief of pain and stiffness of the knee and hip joint in patients with degenerative changes to the synovial joint."
+      },
+      {
+        "ar": "ثبت أن مدة التأثير تصل إلى 12 شهرًا لدى مرضى خشونة الركبة من الدرجة 1 إلى 3.",
+        "en": "The duration of effect in grade 1 to 3 medial compartment osteoarthritis has been demonstrated to be up to 12 months."
+      }
+    ],
+    "steps": []
+  }
+}

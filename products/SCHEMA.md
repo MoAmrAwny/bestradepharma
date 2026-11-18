@@ -6,6 +6,10 @@ Make it opaque: `4471`, not `panadol-extra-500mg`. Brand names change,
 strengths change, products get relicensed. The printed code names a slot; what
 fills the slot is your decision later.
 
+This page describes the full interactive leaflet (`"type": "leaflet"`, the
+default, used by `yucebii`). The shorter `"type": "profile"` page is described
+in the README under "Adding or editing a product".
+
 Every piece of reader-facing text is a `LocalizedText`:
 
 ```json
@@ -31,8 +35,12 @@ ingredients. Leave a flag off rather than inventing content for it.
 | Field | Type | Notes |
 |---|---|---|
 | `name` | LocalizedText | Brand name as printed on the box |
-| `category` | LocalizedText | Optional. One short line under the name on the product directory, e.g. "Joint-health food supplement" |
-| `cardImage` | string | Optional. Pack photo for the product directory, relative to `src/assets/` (e.g. `products/<code>.webp`). Square-ish works best. Without it the card shows the name's first letter. Use a real photo of the actual pack, never a generated mock-up. |
+| `category` | LocalizedText | Optional. Shown above the product name, e.g. "Joint-health food supplement" |
+| `cardCategory` | LocalizedText | Optional. Short line on product cards, e.g. "Food supplement · capsules". Falls back to `category`. |
+| `summary` | LocalizedText | One or two sentences for the product cards |
+| `group` | string | `device` or `supplement`: which list the product appears in |
+| `order` | number | Position in the product lists, 1 first |
+| `color` | string | Accent for the placeholder pack until `src/assets/img/<code>.png` exists |
 | `straplineClaimId` | string | id of the claim used as the page strapline |
 | `capsulesPerPack` | number | |
 | `dose` | LocalizedText | Full sentence, e.g. "One capsule daily, with or without food. Adults only." |

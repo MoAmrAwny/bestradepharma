@@ -1,0 +1,71 @@
+{
+  "type": "profile",
+  "data": {
+    "product": {
+      "name": {
+        "ar": "SportVis",
+        "en": "SportVis"
+      },
+      "group": "device",
+      "order": 2,
+      "color": "#094aa0",
+      "patients": 3000,
+      "sourceNote": true,
+      "category": {
+        "ar": "الأوتار والأربطة",
+        "en": "Tendons & ligaments"
+      },
+      "summary": {
+        "ar": "حمض هيالورونيك مصمّم للأنسجة الرخوة، لتخفيف الألم وتحسين التعافي من إصابات الأوتار والأربطة.",
+        "en": "Hyaluronic acid adapted to soft tissue, to relieve pain and optimise recovery from tendon and ligament injuries."
+      }
+    },
+    "facts": [
+      {
+        "label": {
+          "ar": "المادة",
+          "en": "Active"
+        },
+        "value": {
+          "ar": "STABHA™ حمض هيالورونيك متوافق مع الأنسجة الرخوة",
+          "en": "STABHA™ soft-tissue adapted hyaluronic acid"
+        }
+      },
+      {
+        "label": {
+          "ar": "الجرعة",
+          "en": "Dose"
+        },
+        "value": {
+          "ar": "حقنة 1.2 مل حول المفصل",
+          "en": "1.2 ml peri-articular injection"
+        }
+      },
+      {
+        "label": {
+          "ar": "المنشأ",
+          "en": "Origin"
+        },
+        "value": {
+          "ar": "MDT، سويسرا",
+          "en": "MDT Int’l, Switzerland"
+        }
+      }
+    ],
+    "uses": [
+      {
+        "ar": "التواء الكاحل من الدرجة الأولى والثانية.",
+        "en": "Grade 1 and 2 ankle sprains."
+      },
+      {
+        "ar": "مرفق التنس (التهاب اللقيمة الوحشية).",
+        "en": "Tennis elbow (lateral epicondylitis)."
+      },
+      {
+        "ar": "اعتلال أوتار الكفة المدوّرة.",
+        "en": "Rotator cuff tendinopathy."
+      }
+    ],
+    "steps": []
+  }
+}

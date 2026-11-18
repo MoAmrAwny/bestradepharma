@@ -1,8 +1,8 @@
 {
-  "name": "product-leaflets",
+  "name": "bestradepharma-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Static QR-linked product leaflets",
+  "description": "bestradepharma.com: company site and QR-linked product pages",
   "scripts": {
     "build": "node build.js",
     "serve": "node build.js && npx --yes serve dist",
@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "jsdom": "^26.0.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
