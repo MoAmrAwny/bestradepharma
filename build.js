@@ -38,6 +38,10 @@ const shellTpl = read(path.join(SRC, "shell.html"));
 const rendererJs = read(path.join(SRC, "assets", "leaflet.js"));
 
 const BASE = site.baseUrl.replace(/\/$/, "");
+/* Folder the site is served from. Empty on bestradepharma.com and Cloudflare
+   Pages; "/bestradepharma" on the GitHub Pages project address. Set by the
+   BASE_PATH environment variable (the GitHub Pages workflow does this). */
+const BASE_PATH = (process.env.BASE_PATH || "").replace(/\/+$/, "");
 const YEAR = new Date().getFullYear();
 const LANGS = ["en", "ar"];
 const PAGES = ["home", "products", "about", "contact"];
@@ -421,7 +425,16 @@ const gtmBody = GTM
     )}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
   : "";
 
+/** Prefixes every site-root link (href="/...", src="/...", url(/...)) with BASE_PATH. */
+function withBasePath(html) {
+  if (!BASE_PATH) return html;
+  return html
+    .replace(/(\s(?:href|src)=")\/(?!\/)/g, `$1${BASE_PATH}/`)
+    .replace(/url\(\/(?!\/)/g, `url(${BASE_PATH}/`);
+}
+
 function writePage(rel, html) {
+  html = withBasePath(html);
   const out = path.join(DIST, rel);
   fs.mkdirSync(path.dirname(out), { recursive: true });
   fs.writeFileSync(out, html);
