@@ -301,6 +301,8 @@ a.c-card:hover{color:var(--ink)}
 .c-val{align-self:flex-start;font-size:22px;font-weight:700;color:var(--navy);text-decoration:none}
 .c-val2{align-self:flex-start;font-size:18px;font-weight:600;color:var(--navy);text-decoration:none}
 a.c-val:hover,a.c-val2:hover{color:var(--accent);text-decoration:underline}
+/* Phone numbers: Arabic-Indic digits are "Arabic numbers" to the bidi algorithm, so the spaces between groups resolve right-to-left even inside dir=ltr and the groups come out reversed. Override to keep them in written order. */
+.tel{direction:ltr;unicode-bidi:bidi-override}
 .c-addr{font-size:18px;font-weight:600;color:var(--navy);line-height:1.6}
 .c-form{flex:2 1 min(520px,100%);background:#fff;border:1px solid var(--line);border-radius:8px;padding:32px;display:flex;flex-direction:column;gap:20px;align-items:flex-start}
 .c-form .f2,.c-form .field{align-self:stretch}

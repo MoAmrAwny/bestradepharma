@@ -186,8 +186,8 @@ function contactBand(lang, lv) {
       <p>${T(lang, "address")}</p>
     </div>
     <div class="btn-row">
-      <a class="btn btn-white" href="${TEL1}" dir="ltr">${T(lang, "ph1")}</a>
-      <a class="btn btn-ghost" href="${TEL2}" dir="ltr">${T(lang, "ph2")}</a>
+      <a class="btn btn-white tel" href="${TEL1}" dir="ltr">${T(lang, "ph1")}</a>
+      <a class="btn btn-ghost tel" href="${TEL2}" dir="ltr">${T(lang, "ph2")}</a>
     </div>
   </div>
 </section>`;
@@ -397,14 +397,14 @@ function contactSection(lang) {
   return `<section class="container contact">
   <div class="c-side">
     <p class="c-intro reveal">${T(lang, "contactPageSub")}</p>
-    <div class="c-card reveal"><span class="c-lbl">${T(lang, "phoneLbl")}</span><a class="c-val" href="${TEL1}" dir="ltr">${T(
+    <div class="c-card reveal"><span class="c-lbl">${T(lang, "phoneLbl")}</span><a class="c-val tel" href="${TEL1}" dir="ltr">${T(
     lang,
     "ph1"
-  )}</a><a class="c-val2" href="${TEL2}" dir="ltr">${T(lang, "ph2")}</a></div>
+  )}</a><a class="c-val2 tel" href="${TEL2}" dir="ltr">${T(lang, "ph2")}</a></div>
     <a class="c-card lift reveal" href="${WHATSAPP}" target="_blank" rel="noopener"><span class="c-lbl">${T(
     lang,
     "whatsapp"
-  )}</span><span class="c-val" dir="ltr">${T(lang, "ph1")}</span></a>
+  )}</span><span class="c-val tel" dir="ltr">${T(lang, "ph1")}</span></a>
     <div class="c-card reveal"><span class="c-lbl">${T(lang, "addressLbl")}</span><span class="c-addr">${T(lang, "address")}</span></div>
   </div>
   ${form}
